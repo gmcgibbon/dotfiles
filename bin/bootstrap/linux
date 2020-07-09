@@ -1,0 +1,10 @@
+#!/bin/bash
+
+apt-get install ruby
+apt-get install snapd
+
+dpkg --add-architecture i386
+
+./bin/bootstrap/redo
+
+env RCRC=$HOME/dotfiles/rcrc rcup

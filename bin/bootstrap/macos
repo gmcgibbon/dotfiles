@@ -1,0 +1,8 @@
+#!/bin/bash
+
+which brew >/dev/null || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+which ruby >/dev/null || brew install ruby
+
+./bin/bootstrap/redo
+
+env RCRC=$HOME/dotfiles/rcrc rcup

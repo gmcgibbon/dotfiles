@@ -1,0 +1,23 @@
+#!/bin/env ruby
+
+unix do
+  install "rbenv"
+  install "rcm"
+end
+
+macos do
+  install "iterm2"
+end
+
+windows do
+  install "discord"
+end
+
+install "firefox"
+install "atom"
+install "vim"
+install "skype"
+install "flux"
+install "vlc"
+install "steam"
+install "spotify"

@@ -1,0 +1,23 @@
+third_party_pkg:
+  macos:
+    brew: dummy/tap
+  linux:
+    apt: ppa:dummy
+
+script_pkg:
+  macos:
+    script: git clone for_mac
+  linux:
+    script: git clone for_linux
+
+alias_pkg:
+  windows:
+    name: aliased_win
+  macos:
+    name: aliased_mac
+  linux:
+    name: aliased_linux
+
+snap_pkg:
+  linux:
+    snap: true

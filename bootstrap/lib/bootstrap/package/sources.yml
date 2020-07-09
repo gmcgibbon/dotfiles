@@ -1,0 +1,30 @@
+rcm:
+  macos:
+    brew: thoughtbot/formulae
+  linux:
+    apt: ppa:martin-frost/thoughtbot-rcm
+
+rbenv:
+  linux:
+    script: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+flux:
+  linux:
+    name: fluxgui
+    apt: ppa:nathan-renniewaldock/flux
+
+steam:
+  linux:
+    apt: multiverse
+
+atom:
+  linux:
+    snap: true
+
+skype:
+  linux:
+    snap: true
+
+spotify:
+  linux:
+    snap: true

@@ -1,0 +1,21 @@
+[push]
+  default = current
+[color]
+  ui = auto
+[alias]
+  co = checkout
+  pf = push --force-with-lease
+  st = status
+  br = branch
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+[merge]
+  ff = only
+[fetch]
+  prune = true
+[include]
+  path = ~/.gitconfig.local
+[user]
+	name = Gannon McGibbon
+	email = gannon.mcgibbon@gmail.com
