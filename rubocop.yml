@@ -1,0 +1,27 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/Alias:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    "%i": ()
+    "%I": ()
+    "%r": ()
+    "%w": ()
+    "%W": ()
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes

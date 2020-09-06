@@ -59,10 +59,8 @@ module Bootstrap
   end
 
   module TestHelpers
-    def with_ruby_platform(platform)
-      stub_const(:RUBY_PLATFORM, platform) do
-        yield
-      end
+    def with_ruby_platform(platform, &block)
+      stub_const(:RUBY_PLATFORM, platform, &block)
     end
 
     def file_fixture(path)
