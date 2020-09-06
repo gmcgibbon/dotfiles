@@ -5,6 +5,6 @@ apt-get install snapd
 
 dpkg --add-architecture i386
 
-./bin/bootstrap/redo
+$HOME/dotfiles/bin/bootstrap/redo
 
 env RCRC=$HOME/dotfiles/rcrc rcup

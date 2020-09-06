@@ -5,4 +5,4 @@ winget.appxbundle
 del winget.appxbundle
 winget install -e Ruby
 
-ruby bin/bootstrap/redo
+ruby %USERPROFILE%/bin/bootstrap/redo
