@@ -1,3 +1,6 @@
+[user]
+	name = Gannon McGibbon
+	email = gannon.mcgibbon@gmail.com
 [push]
   default = current
 [color]
@@ -16,6 +19,3 @@
   prune = true
 [include]
   path = ~/.gitconfig.local
-[user]
-	name = Gannon McGibbon
-	email = gannon.mcgibbon@gmail.com

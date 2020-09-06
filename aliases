@@ -1,8 +1,0 @@
-#!/bin/bash
-
-alias b="bundle"
-alias be="bundle exec"
-
-if [[ -f ~/.aliases.local ]]; then
-  source ~/.aliases.local
-fi

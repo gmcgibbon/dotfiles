@@ -9,9 +9,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme mortalscumbag
 antigen apply
 
-alias b="bundle"
-alias be="bundle exec"
-
-eval "$(rbenv init -)"
+source ~/.bashrc
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
