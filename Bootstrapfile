@@ -1,6 +1,7 @@
 #!/bin/env ruby
 
 unix do
+  install "zsh"
   install "rbenv"
   install "rcm"
   install "antigen"
