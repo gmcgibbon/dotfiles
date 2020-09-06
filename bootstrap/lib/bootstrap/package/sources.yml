@@ -8,6 +8,12 @@ rbenv:
   linux:
     script: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 
+antigen:
+  macos:
+    script: git clone https://github.com/zsh-users/antigen.git ~/.antigen
+  linux:
+    script: git clone https://github.com/zsh-users/antigen.git ~/.antigen
+
 flux:
   linux:
     name: fluxgui

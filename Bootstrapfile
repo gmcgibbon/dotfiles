@@ -3,6 +3,7 @@
 unix do
   install "rbenv"
   install "rcm"
+  install "antigen"
 end
 
 macos do
