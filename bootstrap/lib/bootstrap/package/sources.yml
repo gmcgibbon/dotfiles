@@ -10,9 +10,15 @@ rbenv:
 
 antigen:
   macos:
-    script: git clone https://github.com/zsh-users/antigen.git ~/.antigen
+    script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
   linux:
-    script: git clone https://github.com/zsh-users/antigen.git ~/.antigen
+    script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
+
+vundle:
+  macos:
+    script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+  linux:
+    script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 
 flux:
   linux:
