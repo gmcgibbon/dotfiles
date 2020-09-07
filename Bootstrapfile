@@ -7,7 +7,6 @@ unix do
   install "rcm"
   install "antigen"
   install "vundle"
-  install "fzf"
 end
 
 macos do

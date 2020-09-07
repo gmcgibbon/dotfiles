@@ -11,6 +11,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'pangloss/vim-javascript'
 Plugin 'janko-m/vim-test'
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'sickill/vim-monokai'
@@ -18,12 +19,14 @@ Plugin 'sickill/vim-monokai'
 call vundle#end()
 filetype plugin indent on
 
+set backspace=2
 set incsearch
 set history=100
 
 set autowrite
 set nobackup
 set nowritebackup
+set noswapfile
 
 set textwidth=80
 set colorcolumn=+1
