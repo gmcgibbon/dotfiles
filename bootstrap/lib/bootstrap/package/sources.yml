@@ -40,3 +40,8 @@ skype:
 spotify:
   linux:
     snap: true
+
+visual-studio-code:
+  linux:
+    name: code
+    snap: true
