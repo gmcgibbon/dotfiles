@@ -1,0 +1,24 @@
+name: Bootstrap CI
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+      - uses: ruby/setup-ruby@v1
+        name: Setup Ruby
+        with:
+          ruby-version: 3.0
+      - name: 💅🏼 Lint
+        run: |
+          bundle install
+          bundle exec rubocop
+        working-directory: ./bootstrap
+      - name: 🧪 Test
+        run: |
+          bundle install
+          bundle exec rake test
+        working-directory: ./bootstrap

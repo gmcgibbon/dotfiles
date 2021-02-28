@@ -5,4 +5,8 @@ winget.appxbundle
 del winget.appxbundle
 winget install -e Ruby
 
-ruby %USERPROFILE%/bin/bootstrap/redo
+if defined CI (
+  ruby bin/bootstrap/redo
+) else (
+  ruby %USERPROFILE%/dotfiles/bin/bootstrap/redo
+)

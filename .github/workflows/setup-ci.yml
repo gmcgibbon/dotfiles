@@ -1,0 +1,22 @@
+name: Setup CI
+
+on: push
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform:
+          - runner: ubuntu-latest
+            script: sudo -E bin/bootstrap/linux
+          - runner: macos-latest
+            script: bin/bootstrap/macos
+          # NOTE: winget appears to not be supported by actions yet.
+          # - runner: windows-latest
+          #   script: bin/bootstrap/windows.bat
+    runs-on: ${{ matrix.platform.runner }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+      - name: ⚙️ Setup
+        run: ${{ matrix.platform.script }}
