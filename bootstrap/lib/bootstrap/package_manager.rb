@@ -3,6 +3,11 @@
 module Bootstrap
   class PackageManager
     class << self
+      def inherited(subclass)
+        super
+        subclass.singleton_class.alias_method(subclass.command_name, :command)
+      end
+
       def command_name
         @command_name ||= name.dup.tap do |class_name|
           class_name.delete_prefix!("Bootstrap::")
@@ -15,11 +20,21 @@ module Bootstrap
       end
 
       def install(package_name)
-        system(command_name, "install", package_name)
+        command("install", package_name)
       end
 
       def source(_location)
         raise(NotImplementedError)
+      end
+
+      private
+
+      def run(*args)
+        system(*args)
+      end
+
+      def command(*args)
+        run(command_name, *args)
       end
     end
   end
@@ -33,14 +48,14 @@ module Bootstrap
     class << self
       def install(package_name)
         if cask?(package_name)
-          system(command_name, "cask", "install", package_name)
+          brew("cask", "install", package_name)
         else
           super
         end
       end
 
       def source(location)
-        system(command_name, "tap", location)
+        brew("tap", location)
       end
 
       private
@@ -72,7 +87,7 @@ module Bootstrap
   class Winget < PackageManager
     class << self
       def install(package_name)
-        system(command_name, "install", "-e", package_name.capitalize)
+        winget("install", "-e", package_name)
       end
     end
   end
@@ -80,12 +95,12 @@ module Bootstrap
   class Apt < PackageManager
     class << self
       def install(package_name)
-        system(command_name, "install", "-y", package_name)
+        apt("install", "-y", package_name)
       end
 
       def source(location)
-        system("add-apt-repository", location)
-        system(command_name, "update")
+        run("add-apt-repository", location)
+        apt("update")
       end
     end
   end
@@ -93,7 +108,7 @@ module Bootstrap
   class Snap < PackageManager
     class << self
       def install(package_name)
-        system(command_name, "install", "--classic", package_name)
+        snap("install", "--classic", package_name)
       end
     end
   end
