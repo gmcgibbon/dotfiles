@@ -1,7 +1,6 @@
 #!/bin/env ruby
 
 unix do
-  install "vim"
   install "zsh"
   install "rbenv"
   install "rcm"

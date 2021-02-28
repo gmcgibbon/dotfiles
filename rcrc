@@ -1,2 +1,2 @@
-EXCLUDES="README*.md LICENSE Bootstrapfile"
+EXCLUDES="README*.md LICENSE Bootstrapfile test"
 DOTFILES_DIRS="$HOME/dotfiles"
