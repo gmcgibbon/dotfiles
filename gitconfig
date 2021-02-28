@@ -10,6 +10,7 @@
   pf = push --force-with-lease
   st = status
   br = branch
+  rb = rebase
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
