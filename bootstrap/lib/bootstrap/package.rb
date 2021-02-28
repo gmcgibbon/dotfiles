@@ -15,7 +15,7 @@ module Bootstrap
     end
 
     def initialize(name, environment:)
-      @name = name
+      @name = validate_name(name)
       @environment = environment
     end
 
@@ -26,6 +26,14 @@ module Bootstrap
     end
 
     private
+
+    def validate_name(name)
+      raise ArgumentError, <<~MSG unless name == name.downcase.tr("_", "-")
+        Package name "#{name}" is invalid! Please use lowercase hyphenated names only.
+      MSG
+
+      name
+    end
 
     def source
       @source ||= Source.new(

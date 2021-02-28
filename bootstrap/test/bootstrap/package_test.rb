@@ -4,6 +4,18 @@ require("test_helper")
 
 module Bootstrap
   class PackageTest < TestCase
+    test "#initialize" do
+      ["Calitalized", "under_scored", "Spaced name"].each do |malformed_name|
+        error = assert_raises(ArgumentError) do
+          Package.new(malformed_name, environment: Environment.new)
+        end
+
+        assert_equal <<~MSG, error.message
+          Package name "#{malformed_name}" is invalid! Please use lowercase hyphenated names only.
+        MSG
+      end
+    end
+
     test ".sources" do
       sources = YAML.load_file(File.expand_path("../../lib/bootstrap/package/sources.yml", __dir__))
       assert_equal sources, Package.sources
