@@ -1,16 +1,16 @@
-third_party_pkg:
+third-party-pkg:
   macos:
     brew: dummy/tap
   linux:
     apt: ppa:dummy
 
-script_pkg:
+script-pkg:
   macos:
     script: git clone for_mac
   linux:
     script: git clone for_linux
 
-alias_pkg:
+alias-pkg:
   windows:
     name: aliased_win
   macos:
@@ -18,6 +18,6 @@ alias_pkg:
   linux:
     name: aliased_linux
 
-snap_pkg:
+snap-pkg:
   linux:
     snap: true

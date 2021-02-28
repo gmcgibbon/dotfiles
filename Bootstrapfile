@@ -18,7 +18,7 @@ windows do
 end
 
 install "firefox"
-install "atom"
+install "visual-studio-code"
 install "vim"
 install "skype"
 install "flux"
