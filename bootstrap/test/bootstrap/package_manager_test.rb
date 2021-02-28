@@ -36,7 +36,7 @@ module Bootstrap
 
     test ".install cask package" do
       with_casks(%w(some-package)) do
-        assert_called_with(Brew, :system, %w(brew cask install some-package)) do
+        assert_called_with(Brew, :system, %w(brew install --cask some-package)) do
           Brew.install("some-package")
         end
       end
