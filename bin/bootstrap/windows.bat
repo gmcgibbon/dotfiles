@@ -7,6 +7,7 @@ winget install -e Ruby
 
 if defined CI (
   ruby bin/bootstrap/redo
+  ruby test/bootstrap/windows_test.rb
 ) else (
   ruby %USERPROFILE%/dotfiles/bin/bootstrap/redo
 )
