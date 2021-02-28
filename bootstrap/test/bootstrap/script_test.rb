@@ -106,7 +106,7 @@ module Bootstrap
 
     test "#windows on windows" do
       with_ruby_platform("mingw") do
-        assert_called_with(Winget, :install, %w(pkg)) do
+        assert_called_with(Winget, :install, %w(Pkg)) do
           @script.windows { @script.install("pkg") }
         end
       end

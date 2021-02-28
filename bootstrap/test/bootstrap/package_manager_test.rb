@@ -28,16 +28,16 @@ module Bootstrap
 
     test ".install" do
       with_no_casks do
-        assert_called_with(Brew, :system, %w(brew install some_package)) do
-          Brew.install("some_package")
+        assert_called_with(Brew, :system, %w(brew install some-package)) do
+          Brew.install("some-package")
         end
       end
     end
 
     test ".install cask package" do
-      with_casks(%w(some_package)) do
-        assert_called_with(Brew, :system, %w(brew cask install some_package)) do
-          Brew.install("some_package")
+      with_casks(%w(some-package)) do
+        assert_called_with(Brew, :system, %w(brew cask install some-package)) do
+          Brew.install("some-package")
         end
       end
     end
@@ -65,8 +65,8 @@ module Bootstrap
     end
 
     test ".install" do
-      assert_called_with(Winget, :system, %w(winget install -e Some_package)) do
-        Winget.install("some_package")
+      assert_called_with(Winget, :system, %w(winget install -e SomePackage)) do
+        Winget.install("SomePackage")
       end
     end
   end
@@ -77,8 +77,8 @@ module Bootstrap
     end
 
     test ".install" do
-      assert_called_with(Apt, :system, %w(apt install -y some_package)) do
-        Apt.install("some_package")
+      assert_called_with(Apt, :system, %w(apt install -y some-package)) do
+        Apt.install("some-package")
       end
     end
 
@@ -94,8 +94,8 @@ module Bootstrap
       end
 
       test ".install" do
-        assert_called_with(Snap, :system, %w(snap install --classic some_package)) do
-          Snap.install("some_package")
+        assert_called_with(Snap, :system, %w(snap install --classic some-package)) do
+          Snap.install("some-package")
         end
       end
     end

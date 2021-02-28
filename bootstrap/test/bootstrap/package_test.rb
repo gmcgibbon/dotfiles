@@ -28,15 +28,15 @@ module Bootstrap
     private
 
     def third_party_package
-      Package.new("third_party_pkg", environment: Environment.new)
+      Package.new("third-party-pkg", environment: Environment.new)
     end
 
     def script_package
-      Package.new("script_pkg", environment: Environment.new)
+      Package.new("script-pkg", environment: Environment.new)
     end
 
     def alias_package
-      Package.new("alias_pkg", environment: Environment.new)
+      Package.new("alias-pkg", environment: Environment.new)
     end
 
     def test_dependencies
@@ -57,7 +57,7 @@ module Bootstrap
       with_ruby_platform("Darwin") do
         assert_called(Package, :sources, returns: test_dependencies) do
           assert_called_with(Brew, :source, %w(dummy/tap)) do
-            assert_called_with(Brew, :install, %w(third_party_pkg)) do
+            assert_called_with(Brew, :install, %w(third-party-pkg)) do
               third_party_package.install
             end
           end
@@ -101,7 +101,7 @@ module Bootstrap
       with_ruby_platform("Linux") do
         assert_called(Package, :sources, returns: test_dependencies) do
           assert_called_with(Apt, :source, %w(ppa:dummy)) do
-            assert_called_with(Apt, :install, %w(third_party_pkg)) do
+            assert_called_with(Apt, :install, %w(third-party-pkg)) do
               third_party_package.install
             end
           end
@@ -134,7 +134,7 @@ module Bootstrap
     test "#install on linux with snap" do
       with_ruby_platform("Linux") do
         assert_called(Package, :sources, returns: test_dependencies) do
-          assert_called_with(Snap, :install, %w(snap_pkg)) do
+          assert_called_with(Snap, :install, %w(snap-pkg)) do
             snap_package.install
           end
         end
@@ -144,14 +144,14 @@ module Bootstrap
     private
 
     def snap_package
-      Package.new("snap_pkg", environment: Environment.new)
+      Package.new("snap-pkg", environment: Environment.new)
     end
   end
 
   class PackageWindowsInstallTest < PackageInstallTest
     test "#install on windows" do
       with_ruby_platform("Mingw") do
-        assert_called_with(Winget, :install, %w(pkg)) do
+        assert_called_with(Winget, :install, %w(Pkg)) do
           package.install
         end
       end

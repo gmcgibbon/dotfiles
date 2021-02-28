@@ -20,9 +20,9 @@ module Bootstrap
     end
 
     def install
-      first_party_install if source.first_party?
-      third_party_install if source.third_party?
-      script_install if source.script?
+      return first_party_install if source.first_party?
+      return third_party_install if source.third_party?
+      return script_install      if source.script?
     end
 
     private

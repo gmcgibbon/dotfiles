@@ -7,10 +7,10 @@ module Bootstrap
 
       def initialize(package, name: nil, script: nil, **package_manager_options)
         @package = package
-        @name = name || package.name
         @location = parse_location(**package_manager_options)
         @package_manager = parse_package_manager(**package_manager_options)
         @script = script
+        @name = name || format_package_name(package.name)
       end
 
       def package_manager
@@ -30,6 +30,15 @@ module Bootstrap
       end
 
       private
+
+      def format_package_name(package_name)
+        case package_manager
+        when Winget.singleton_class
+          package_name.sub(/^[a-z\d]*/, &:capitalize)
+        else
+          package_name
+        end
+      end
 
       def parse_package_manager(snap: nil, brew: nil, apt: nil)
         (snap && "snap") || (apt && "apt") || (brew && "brew")
