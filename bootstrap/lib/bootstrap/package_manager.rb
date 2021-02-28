@@ -48,7 +48,7 @@ module Bootstrap
     class << self
       def install(package_name)
         if cask?(package_name)
-          brew("cask", "install", package_name)
+          brew("install", "--cask", package_name)
         else
           super
         end
