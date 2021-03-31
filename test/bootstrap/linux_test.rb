@@ -16,6 +16,10 @@ module Bootstrap
       assert_installed_at("~/.rbenv")
     end
 
+    test "installs nvm" do
+      assert_installed_at("~/.nvm")
+    end
+
     test "installs zsh" do
       assert_apt_installed("zsh")
     end

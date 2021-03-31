@@ -8,6 +8,10 @@ rbenv:
   linux:
     script: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 
+nvm:
+  linux:
+    script: git clone https://github.com/nvm-sh/nvm.git ~/.nvm
+
 antigen:
   macos:
     script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
