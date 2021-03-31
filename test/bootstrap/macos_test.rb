@@ -16,6 +16,10 @@ module Bootstrap
       assert_brew_installed("rbenv")
     end
 
+    test "installs nvm" do
+      assert_brew_installed("nvm")
+    end
+
     test "installs zsh" do
       assert_brew_installed("zsh")
     end
