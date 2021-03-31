@@ -83,7 +83,7 @@ module Bootstrap
     end
 
     test ".source" do
-      assert_called_with(Apt, :system, [%w(add-apt-repository ppa:location), %w(apt update)]) do
+      assert_called_with(Apt, :system, [%w(add-apt-repository -y ppa:location), %w(apt update)]) do
         Apt.source("ppa:location")
       end
     end
