@@ -32,42 +32,76 @@ module Bootstrap
       assert_apt_installed("vim")
     end
 
-    test "installs firefox" do
-      assert_apt_installed("firefox")
-    end
+    if gui?
+      test "installs firefox" do
+        assert_apt_installed("firefox")
+      end
 
-    test "installs flux" do
-      assert_apt_installed("fluxgui")
-    end
+      test "installs flux" do
+        assert_apt_installed("fluxgui")
+      end
 
-    test "installs vlc" do
-      assert_apt_installed("vlc")
-    end
+      test "installs vlc" do
+        assert_apt_installed("vlc")
+      end
 
-    test "installs steam" do
-      assert_apt_installed("steam")
-    end
+      test "installs steam" do
+        assert_apt_installed("steam")
+      end
 
-    test "installs visual studio code" do
-      assert_snap_installed("code")
-    end
+      test "installs visual studio code" do
+        assert_snap_installed("code")
+      end
 
-    test "installs skype" do
-      assert_snap_installed("skype")
-    end
+      test "installs skype" do
+        assert_snap_installed("skype")
+      end
 
-    test "installs spotify" do
-      assert_snap_installed("spotify")
+      test "installs spotify" do
+        assert_snap_installed("spotify")
+      end
+    else
+      test "does not install flux" do
+        assert_apt_not_installed("fluxgui")
+      end
+
+      test "does not install vlc" do
+        assert_apt_not_installed("vlc")
+      end
+
+      test "does not install steam" do
+        assert_apt_not_installed("steam")
+      end
+
+      test "does not install visual studio code" do
+        assert_snap_not_installed("code")
+      end
+
+      test "does not install skype" do
+        assert_snap_not_installed("skype")
+      end
+
+      test "does not install spotify" do
+        assert_snap_not_installed("spotify")
+      end
     end
 
     private
 
     def assert_apt_installed(package_name)
-      assert_predicate(Open3.capture3("apt list #{package_name}").last, :success?)
+      assert_predicate(Open3.capture3("apt list --installed | grep #{package_name}").last, :success?)
+    end
+
+    def assert_apt_not_installed(package_name)
+      assert_not_predicate(Open3.capture3("apt list --installed | grep #{package_name}").last, :success?)
     end
 
     def assert_snap_installed(package_name)
       assert_predicate(Open3.capture3("snap list #{package_name}").last, :success?)
+    end
+
+    def assert_snap_not_installed(package_name)
+      assert_not_predicate(Open3.capture3("snap list #{package_name}").last, :success?)
     end
 
     def assert_installed_at(path)
