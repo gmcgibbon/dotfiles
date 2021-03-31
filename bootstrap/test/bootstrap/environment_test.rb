@@ -8,10 +8,6 @@ module Bootstrap
       @environment = Environment.new
     end
 
-    test ".[]" do
-      assert_equal Environment::Matcher.new(:windows), Environment[:windows]
-    end
-
     test ".system" do
       assert_respond_to Environment, :system
     end
@@ -45,6 +41,28 @@ module Bootstrap
         assert_raises(NotImplementedError) do
           @environment.platform
         end
+      end
+    end
+
+    test "#constraints gui with display" do
+      with_ruby_platform("Some.Linux") do
+        with_env("DISPLAY" => "1") do
+          assert_equal({ gui: true }, @environment.constraints)
+        end
+      end
+    end
+
+    test "#constraints gui with no display" do
+      with_ruby_platform("Some.Linux") do
+        with_env("DISPLAY" => nil) do
+          assert_equal({ gui: false }, @environment.constraints)
+        end
+      end
+    end
+
+    test "#constraints gui on windows" do
+      with_ruby_platform("Mingw") do
+        assert_equal({ gui: true }, @environment.constraints)
       end
     end
 

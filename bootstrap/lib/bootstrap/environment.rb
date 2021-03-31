@@ -11,10 +11,6 @@ module Bootstrap
     private_constant(:PLATFORM)
 
     class << self
-      def [](group)
-        Matcher.new(group)
-      end
-
       public :system
     end
 
@@ -24,6 +20,10 @@ module Bootstrap
           break symbol if RUBY_PLATFORM.downcase.match?(regex)
         end || raise(NotImplementedError)
       end
+    end
+
+    def constraints
+      @constraints ||= { gui: gui? }
     end
 
     def package_managers
@@ -46,6 +46,15 @@ module Bootstrap
     end
 
     private
+
+    def gui?
+      case platform
+      when :macos, :linux
+        !ENV["DISPLAY"].nil?
+      when :windows
+        true
+      end
+    end
 
     def package_manager_hash(*package_managers, default:)
       hash = package_managers.map do |package_manager|
