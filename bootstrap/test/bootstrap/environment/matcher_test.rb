@@ -23,6 +23,10 @@ module Bootstrap
         end
       end
 
+      test "#constraints" do
+        assert_equal({ gui: true }, Matcher.new(:all, gui: true).constraints)
+      end
+
       test "#match?" do
         assert_operator Matcher.new(:all), :match?, macos_environment
         assert_operator Matcher.new(:all), :match?, linux_environment
@@ -43,6 +47,9 @@ module Bootstrap
         assert_not_operator Matcher.new(:windows), :match?, macos_environment
         assert_not_operator Matcher.new(:windows), :match?, linux_environment
         assert_operator Matcher.new(:windows), :match?, windows_environment
+
+        assert_operator Matcher.new(:linux, gui: true), :match?, linux_environment("DISPLAY" => "1")
+        assert_not_operator Matcher.new(:linux, gui: true), :match?, linux_environment("DISPLAY" => nil)
       end
 
       test "#==" do
@@ -52,25 +59,43 @@ module Bootstrap
         assert_equal Matcher.new(:all), Matcher.new(:all)
         assert_equal Matcher.new(:unix), Matcher.new(:unix)
         assert_not_equal Matcher.new(:all), Matcher.new(:unix)
+
+        assert_equal Matcher.new(:none), Matcher.new(:none)
+        assert_equal Matcher.new(:all, gui: true), Matcher.new(:all, gui: true)
+        assert_not_equal Matcher.new(:none, gui: true), Matcher.new(:none)
+      end
+
+      test "#+" do
+        assert_equal Matcher.new(:macos), Matcher.new(:all) + Matcher.new(:macos)
+        assert_equal Matcher.new(:all, gui: true), Matcher.new(:all) + Matcher.new(:none, gui: true)
+        assert_equal Matcher.new(:all, gui: true), Matcher.new(:none, gui: true) + Matcher.new(:all)
+        assert_equal Matcher.new(:all), Matcher.new(:all) + Matcher.new(:none)
+        assert_equal Matcher.new(:linux, gui: false), Matcher.new(:linux) + Matcher.new(:none, gui: false)
       end
 
       private
 
-      def macos_environment
+      def macos_environment(env = {})
         with_ruby_platform("Darwin") do
-          Environment.new.tap(&:platform)
+          with_env(**env) do
+            Environment.new.tap(&:platform).tap(&:constraints)
+          end
         end
       end
 
-      def linux_environment
+      def linux_environment(env = {})
         with_ruby_platform("Linux") do
-          Environment.new.tap(&:platform)
+          with_env(**env) do
+            Environment.new.tap(&:platform).tap(&:constraints)
+          end
         end
       end
 
-      def windows_environment
+      def windows_environment(env = {})
         with_ruby_platform("Mingw") do
-          Environment.new.tap(&:platform)
+          with_env(**env) do
+            Environment.new.tap(&:platform).tap(&:constraints)
+          end
         end
       end
     end

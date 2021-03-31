@@ -7,14 +7,30 @@ jobs:
     strategy:
       matrix:
         platform:
-          - runner: ubuntu-latest
+          - name: linux
+            runner: ubuntu-latest
             script: sudo -E bin/bootstrap/linux
-          - runner: macos-latest
+            env:
+              DISPLAY: 1
+          - name: macos
+            runner: macos-latest
             script: bin/bootstrap/macos
+            env:
+              DISPLAY: 1
+          - name: linux-headless
+            runner: ubuntu-latest
+            script: sudo -E bin/bootstrap/linux
+            env: {}
+          - name: macos-headless
+            runner: macos-latest
+            script: bin/bootstrap/macos
+            env: {}
           # NOTE: winget appears to not be supported by actions yet.
           # - runner: windows-latest
           #   script: bin/bootstrap/windows.bat
+    name: ${{ matrix.platform.name }}
     runs-on: ${{ matrix.platform.runner }}
+    env: ${{ matrix.platform.env }}
     steps:
       - uses: actions/checkout@v2
         name: Checkout

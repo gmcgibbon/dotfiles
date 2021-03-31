@@ -4,7 +4,7 @@ module Bootstrap
   class Script
     def initialize
       @environment = Environment.new
-      @context = Environment[:all]
+      @context = Environment::Matcher.new(:all)
     end
 
     def install(package)
@@ -13,7 +13,7 @@ module Bootstrap
 
     def unix
       previous_context = @context
-      @context = Environment[:unix]
+      @context += Environment::Matcher.new(:unix)
       yield
     ensure
       @context = previous_context
@@ -21,7 +21,7 @@ module Bootstrap
 
     def macos
       previous_context = @context
-      @context = Environment[:macos]
+      @context += Environment::Matcher.new(:macos)
       yield
     ensure
       @context = previous_context
@@ -29,7 +29,7 @@ module Bootstrap
 
     def linux
       previous_context = @context
-      @context = Environment[:linux]
+      @context += Environment::Matcher.new(:linux)
       yield
     ensure
       @context = previous_context
@@ -37,7 +37,15 @@ module Bootstrap
 
     def windows
       previous_context = @context
-      @context = Environment[:windows]
+      @context += Environment::Matcher.new(:windows)
+      yield
+    ensure
+      @context = previous_context
+    end
+
+    def gui
+      previous_context = @context
+      @context += Environment::Matcher.new(:none, gui: true)
       yield
     ensure
       @context = previous_context

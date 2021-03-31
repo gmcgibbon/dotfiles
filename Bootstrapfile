@@ -1,5 +1,24 @@
 #!/bin/env ruby
 
+gui do
+  install "firefox"
+  install "visual-studio-code"
+  install "skype"
+  install "vlc"
+  install "steam"
+  install "spotify"
+
+  macos do
+    install "iterm2"
+    install "flux"
+  end
+
+  windows do
+    install "discord"
+    install "flux"
+  end
+end
+
 unix do
   install "zsh"
   install "rbenv"
@@ -9,19 +28,4 @@ unix do
   install "vundle"
 end
 
-macos do
-  install "iterm2"
-end
-
-windows do
-  install "discord"
-end
-
-install "firefox"
-install "visual-studio-code"
 install "vim"
-install "skype"
-install "flux"
-install "vlc"
-install "steam"
-install "spotify"

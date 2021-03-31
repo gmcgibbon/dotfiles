@@ -63,6 +63,14 @@ module Bootstrap
       stub_const(:RUBY_PLATFORM, platform, &block)
     end
 
+    def with_env(**env)
+      old_env = ENV.slice(*env.keys)
+      ENV.merge!(env)
+      yield
+    ensure
+      ENV.merge!(old_env)
+    end
+
     def file_fixture(path)
       require("pathname")
       Pathname.new(__dir__).join("fixtures", "files", path)

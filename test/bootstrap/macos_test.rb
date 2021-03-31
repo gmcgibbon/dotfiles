@@ -32,36 +32,66 @@ module Bootstrap
       assert_brew_installed("vim")
     end
 
-    test "installs iterm2" do
-      assert_brew_cask_installed("iterm2")
-    end
+    if gui?
+      test "installs iterm2" do
+        assert_brew_cask_installed("iterm2")
+      end
 
-    test "installs firefox" do
-      assert_brew_cask_installed("firefox")
-    end
+      test "installs firefox" do
+        assert_brew_cask_installed("firefox")
+      end
 
-    test "installs flux" do
-      assert_brew_cask_installed("flux")
-    end
+      test "installs flux" do
+        assert_brew_cask_installed("flux")
+      end
 
-    test "installs vlc" do
-      assert_brew_cask_installed("vlc")
-    end
+      test "installs vlc" do
+        assert_brew_cask_installed("vlc")
+      end
 
-    test "installs steam" do
-      assert_brew_cask_installed("steam")
-    end
+      test "installs steam" do
+        assert_brew_cask_installed("steam")
+      end
 
-    test "installs visual studio code" do
-      assert_brew_cask_installed("visual-studio-code")
-    end
+      test "installs visual studio code" do
+        assert_brew_cask_installed("visual-studio-code")
+      end
 
-    test "installs skype" do
-      assert_brew_cask_installed("skype")
-    end
+      test "installs skype" do
+        assert_brew_cask_installed("skype")
+      end
 
-    test "installs spotify" do
-      assert_brew_cask_installed("spotify")
+      test "installs spotify" do
+        assert_brew_cask_installed("spotify")
+      end
+    else
+      test "installs iterm2" do
+        assert_brew_cask_not_installed("iterm2")
+      end
+
+      test "installs flux" do
+        assert_brew_cask_not_installed("flux")
+      end
+
+      test "installs vlc" do
+        assert_brew_cask_not_installed("vlc")
+      end
+
+      test "installs steam" do
+        assert_brew_cask_not_installed("steam")
+      end
+
+      test "installs visual studio code" do
+        assert_brew_cask_not_installed("visual-studio-code")
+      end
+
+      test "installs skype" do
+        assert_brew_cask_not_installed("skype")
+      end
+
+      test "installs spotify" do
+        assert_brew_cask_not_installed("spotify")
+      end
     end
 
     private
@@ -72,6 +102,10 @@ module Bootstrap
 
     def assert_brew_cask_installed(package_name)
       assert_predicate(Open3.capture3("brew list --cask #{package_name}").last, :success?)
+    end
+
+    def assert_brew_cask_not_installed(package_name)
+      assert_not_predicate(Open3.capture3("brew list --cask #{package_name}").last, :success?)
     end
 
     def assert_installed_at(path)
