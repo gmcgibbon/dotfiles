@@ -24,11 +24,6 @@ vundle:
   linux:
     script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 
-flux:
-  linux:
-    name: fluxgui
-    apt: ppa:nathan-renniewaldock/flux
-
 steam:
   linux:
     apt: multiverse

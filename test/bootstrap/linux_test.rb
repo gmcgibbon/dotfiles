@@ -37,10 +37,6 @@ module Bootstrap
         assert_apt_installed("firefox")
       end
 
-      test "installs flux" do
-        assert_apt_installed("fluxgui")
-      end
-
       test "installs vlc" do
         assert_apt_installed("vlc")
       end

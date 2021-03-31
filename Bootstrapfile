@@ -4,17 +4,18 @@ gui do
   install "firefox"
   install "visual-studio-code"
   install "skype"
-  install "flux"
   install "vlc"
   install "steam"
   install "spotify"
 
   macos do
     install "iterm2"
+    install "flux"
   end
 
   windows do
     install "discord"
+    install "flux"
   end
 end
 
