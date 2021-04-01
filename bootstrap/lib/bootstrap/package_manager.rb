@@ -99,7 +99,7 @@ module Bootstrap
       end
 
       def source(location)
-        run("add-apt-repository -y", location)
+        run("add-apt-repository", "-y", location)
         apt("update")
       end
     end
