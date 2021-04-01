@@ -7,9 +7,10 @@ dpkg --add-architecture i386
 
 if [[ -n $CI ]]; then
   bin/bootstrap/redo
-  env RCRC=./rcrc rcup
+  env RCRC=./rcrc rcup -f
   ruby test/bootstrap/linux_test.rb
 else
   $HOME/dotfiles/bin/bootstrap/redo
-  env RCRC=$HOME/dotfiles/rcrc rcup
+  chown -R $USER:$USER $HOME/
+  env RCRC=$HOME/dotfiles/rcrc rcup -f
 fi

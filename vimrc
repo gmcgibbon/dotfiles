@@ -42,4 +42,4 @@ set modelines=0
 set nomodeline
 
 syntax on
-colorscheme monokai
+silent! colorscheme monokai
