@@ -5,9 +5,9 @@ which ruby >/dev/null || brew install ruby
 
 if [[ -n $CI ]]; then
   bin/bootstrap/redo
-  env RCRC=./rcrc rcup
+  env RCRC=./rcrc rcup -f
   ruby test/bootstrap/macos_test.rb
 else
   $HOME/dotfiles/bin/bootstrap/redo
-  env RCRC=$HOME/dotfiles/rcrc rcup
+  env RCRC=$HOME/dotfiles/rcrc rcup -f
 fi
