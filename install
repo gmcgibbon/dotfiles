@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo -E $HOME/dotfiles/bin/bootstrap/redo
+sudo $HOME/dotfiles/bin/bootstrap/redo
 sudo chown -R $USER:$USER $HOME/
 env RCRC=$HOME/dotfiles/rcrc rcup -f
