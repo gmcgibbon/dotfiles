@@ -11,6 +11,5 @@ if [[ -n $CI ]]; then
   ruby test/bootstrap/linux_test.rb
 else
   $HOME/dotfiles/bin/bootstrap/redo
-  chown -R $USER:$USER $HOME/
   env RCRC=$HOME/dotfiles/rcrc rcup -f
 fi
