@@ -27,9 +27,14 @@ module Bootstrap
         raise(NotImplementedError)
       end
 
+      def sudo?
+        false
+      end
+
       private
 
       def run(*args)
+        args.prepend("sudo") if sudo?
         system(*args)
       end
 
@@ -102,6 +107,10 @@ module Bootstrap
         run("add-apt-repository", "-y", location)
         apt("update")
       end
+
+      def sudo?
+        true
+      end
     end
   end
 
@@ -109,6 +118,10 @@ module Bootstrap
     class << self
       def install(package_name)
         snap("install", "--classic", package_name)
+      end
+
+      def sudo?
+        true
       end
     end
   end

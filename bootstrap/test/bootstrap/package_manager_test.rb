@@ -19,6 +19,10 @@ module Bootstrap
         PackageManager.source("some/location")
       end
     end
+
+    test ".sudo?" do
+      assert_not_predicate(PackageManager, :sudo?)
+    end
   end
 
   class BrewTest < TestCase
@@ -77,27 +81,35 @@ module Bootstrap
     end
 
     test ".install" do
-      assert_called_with(Apt, :system, %w(apt install -y some-package)) do
+      assert_called_with(Apt, :system, %w(sudo apt install -y some-package)) do
         Apt.install("some-package")
       end
     end
 
     test ".source" do
-      assert_called_with(Apt, :system, [%w(add-apt-repository -y ppa:location), %w(apt update)]) do
+      assert_called_with(Apt, :system, [%w(sudo add-apt-repository -y ppa:location), %w(sudo apt update)]) do
         Apt.source("ppa:location")
       end
     end
 
-    class SnapTest < TestCase
-      test ".command_name" do
-        assert_equal "snap", Snap.command_name
-      end
+    test ".sudo?" do
+      assert_predicate(Apt, :sudo?)
+    end
+  end
 
-      test ".install" do
-        assert_called_with(Snap, :system, %w(snap install --classic some-package)) do
-          Snap.install("some-package")
-        end
+  class SnapTest < TestCase
+    test ".command_name" do
+      assert_equal "snap", Snap.command_name
+    end
+
+    test ".install" do
+      assert_called_with(Snap, :system, %w(sudo snap install --classic some-package)) do
+        Snap.install("some-package")
       end
+    end
+
+    test ".sudo?" do
+      assert_predicate(Snap, :sudo?)
     end
   end
 end

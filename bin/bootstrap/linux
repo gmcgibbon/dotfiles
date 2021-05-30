@@ -1,9 +1,9 @@
 #!/bin/bash
 
-apt-get install -y ruby
-apt-get install -y snapd
+sudo apt-get install -y ruby
+sudo apt-get install -y snapd
 
-dpkg --add-architecture i386
+sudo dpkg --add-architecture i386
 
 if [[ -n $CI ]]; then
   bin/bootstrap/redo
