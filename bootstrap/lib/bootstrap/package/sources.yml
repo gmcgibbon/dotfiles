@@ -1,8 +1,6 @@
 rcm:
   macos:
     brew: thoughtbot/formulae
-  linux:
-    apt: ppa:martin-frost/thoughtbot-rcm
 
 rbenv:
   linux:
