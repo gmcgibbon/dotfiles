@@ -20,6 +20,9 @@ Style/PercentLiteralDelimiters:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
 
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
