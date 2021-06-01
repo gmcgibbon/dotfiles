@@ -10,7 +10,7 @@ require("bootstrap/script")
 module Bootstrap
   def self.call(file)
     Script.new.instance_eval(
-      File.read(file)
+      File.read(file),
     )
   end
 end

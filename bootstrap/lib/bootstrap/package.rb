@@ -38,7 +38,7 @@ module Bootstrap
     def source
       @source ||= Source.new(
         self,
-        **self.class.sources.dig(name, @environment.platform.to_s).to_h.transform_keys(&:to_sym)
+        **self.class.sources.dig(name, @environment.platform.to_s).to_h.transform_keys(&:to_sym),
       )
     end
 

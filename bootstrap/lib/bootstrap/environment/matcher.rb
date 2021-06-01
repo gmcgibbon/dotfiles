@@ -23,7 +23,7 @@ module Bootstrap
       def +(other)
         Matcher.new(
           *(other.platforms.empty? ? platforms : other.platforms),
-          **constraints.merge(other.constraints)
+          **constraints.merge(other.constraints),
         )
       end
 
