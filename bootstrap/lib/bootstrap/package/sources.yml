@@ -2,6 +2,12 @@ rcm:
   macos:
     brew: thoughtbot/formulae
 
+heroku:
+  macos:
+    brew: heroku/brew
+  linux:
+    snap: true
+
 rbenv:
   linux:
     script: git clone https://github.com/rbenv/rbenv.git ~/.rbenv

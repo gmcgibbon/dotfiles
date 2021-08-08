@@ -26,6 +26,7 @@ unix do
   install "rcm"
   install "antigen"
   install "vundle"
+  install "heroku"
 end
 
 install "vim"

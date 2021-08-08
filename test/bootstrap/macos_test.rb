@@ -32,6 +32,10 @@ module Bootstrap
       assert_brew_installed("vim")
     end
 
+    test "installs heroku" do
+      assert_brew_installed("heroku")
+    end
+
     if gui?
       test "installs iterm2" do
         assert_brew_cask_installed("iterm2")

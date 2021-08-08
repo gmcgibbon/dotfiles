@@ -32,6 +32,10 @@ module Bootstrap
       assert_apt_installed("vim")
     end
 
+    test "installs heroku" do
+      assert_snap_installed("heroku")
+    end
+
     if gui?
       test "installs firefox" do
         assert_apt_installed("firefox")
