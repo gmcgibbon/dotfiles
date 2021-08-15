@@ -6,7 +6,7 @@ heroku:
   macos:
     brew: heroku/brew
   linux:
-    snap: true
+    script: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 rbenv:
   linux:

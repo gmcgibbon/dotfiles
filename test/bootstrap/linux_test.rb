@@ -33,7 +33,7 @@ module Bootstrap
     end
 
     test "installs heroku" do
-      assert_snap_installed("heroku")
+      assert_apt_installed("heroku")
     end
 
     if gui?
