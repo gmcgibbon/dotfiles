@@ -17,7 +17,7 @@ module Bootstrap
     end
 
     test "installs nvm" do
-      assert_brew_installed("nvm")
+      assert_installed_at("~/.nvm")
     end
 
     test "installs zsh" do
