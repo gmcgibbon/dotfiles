@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 function ssh_connection() {
   if [[ -n $SSH_CONNECTION ]]; then

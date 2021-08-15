@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 source ~/.zsh/antigen/bin/antigen.zsh
 
@@ -15,4 +15,7 @@ source ~/.zsh/themes/sparkle.zsh
 
 source ~/.bashrc
 
+source ~/.zsh/nvm-hook
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
