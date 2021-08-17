@@ -50,3 +50,7 @@ visual-studio-code:
   linux:
     name: code
     snap: true
+
+slack:
+  linux:
+    snap: true

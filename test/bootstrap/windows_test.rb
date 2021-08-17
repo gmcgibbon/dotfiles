@@ -40,6 +40,10 @@ module Bootstrap
       assert_winget_installed("Spotify")
     end
 
+    test "installs slack" do
+      assert_winget_installed("Slack")
+    end
+
     private
 
     def assert_winget_installed(package_name)

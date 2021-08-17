@@ -60,6 +60,10 @@ module Bootstrap
       test "installs spotify" do
         assert_snap_installed("spotify")
       end
+
+      test "installs slack" do
+        assert_snap_installed("slack")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -83,6 +87,10 @@ module Bootstrap
 
       test "does not install spotify" do
         assert_snap_not_installed("spotify")
+      end
+
+      test "does not install slack" do
+        assert_snap_not_installed("slack")
       end
     end
 
