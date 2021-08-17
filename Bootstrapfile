@@ -7,6 +7,7 @@ gui do
   install "vlc"
   install "steam"
   install "spotify"
+  install "slack"
 
   macos do
     install "iterm2"

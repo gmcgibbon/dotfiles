@@ -68,33 +68,41 @@ module Bootstrap
       test "installs spotify" do
         assert_brew_cask_installed("spotify")
       end
+
+      test "installs slack" do
+        assert_brew_cask_installed("slack")
+      end
     else
-      test "installs iterm2" do
+      test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
       end
 
-      test "installs flux" do
+      test "does not install flux" do
         assert_brew_cask_not_installed("flux")
       end
 
-      test "installs vlc" do
+      test "does not install vlc" do
         assert_brew_cask_not_installed("vlc")
       end
 
-      test "installs steam" do
+      test "does not install steam" do
         assert_brew_cask_not_installed("steam")
       end
 
-      test "installs visual studio code" do
+      test "does not install visual studio code" do
         assert_brew_cask_not_installed("visual-studio-code")
       end
 
-      test "installs skype" do
+      test "does not install skype" do
         assert_brew_cask_not_installed("skype")
       end
 
-      test "installs spotify" do
+      test "does not install spotify" do
         assert_brew_cask_not_installed("spotify")
+      end
+
+      test "does not install slack" do
+        assert_brew_cask_not_installed("slack")
       end
     end
 
