@@ -49,7 +49,12 @@ module Bootstrap
         assert_operator Matcher.new(:windows), :match?, windows_environment
 
         assert_operator Matcher.new(:linux, gui: true), :match?, linux_environment("DISPLAY" => "1")
-        assert_not_operator Matcher.new(:linux, gui: true), :match?, linux_environment("DISPLAY" => nil)
+        assert_operator Matcher.new(:linux, gui: true), :match?, linux_environment("TERM_PROGRAM" => "1")
+        assert_not_operator(
+          Matcher.new(:linux, gui: true),
+          :match?,
+          linux_environment("DISPLAY" => nil, "TERM_PROGRAM" => nil),
+        )
       end
 
       test "#==" do

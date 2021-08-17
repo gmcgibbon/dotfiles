@@ -11,7 +11,7 @@ require_relative "../../bootstrap/test/test_helper"
 module Bootstrap
   class TestCase
     def self.gui?
-      !ENV["DISPLAY"].nil?
+      !(ENV["DISPLAY"] || ENV["TERM_PROGRAM"]).nil?
     end
   end
 end

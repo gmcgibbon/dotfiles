@@ -52,9 +52,17 @@ module Bootstrap
       end
     end
 
+    test "#constraints gui with terminal program" do
+      with_ruby_platform("Some.Linux") do
+        with_env("TERM_PROGRAM" => "1") do
+          assert_equal({ gui: true }, @environment.constraints)
+        end
+      end
+    end
+
     test "#constraints gui with no display" do
       with_ruby_platform("Some.Linux") do
-        with_env("DISPLAY" => nil) do
+        with_env("DISPLAY" => nil, "TERM_PROGRAM" => nil) do
           assert_equal({ gui: false }, @environment.constraints)
         end
       end
