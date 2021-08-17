@@ -50,7 +50,7 @@ module Bootstrap
     def gui?
       case platform
       when :macos, :linux
-        !ENV["DISPLAY"].nil?
+        !(ENV["DISPLAY"] || ENV["TERM_PROGRAM"]).nil?
       when :windows
         true
       end

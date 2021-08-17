@@ -30,9 +30,19 @@ module Bootstrap
       end
     end
 
+    test "#gui with terminal program" do
+      with_ruby_platform("linux") do
+        with_env("TERM_PROGRAM" => "1") do
+          assert_called(Apt, :install) do
+            @script.gui { @script.install("pkg") }
+          end
+        end
+      end
+    end
+
     test "#gui without display" do
       with_ruby_platform("linux") do
-        with_env("DISPLAY" => nil) do
+        with_env("DISPLAY" => nil, "TERM_PROGRAM" => nil) do
           assert_not_called(Apt, :install) do
             @script.gui { @script.install("pkg") }
           end
