@@ -54,3 +54,8 @@ visual-studio-code:
 slack:
   linux:
     snap: true
+
+zoom:
+  linux:
+    name: zoom-client
+    snap: true
