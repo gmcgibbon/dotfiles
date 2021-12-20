@@ -57,6 +57,10 @@ module Bootstrap
         assert_snap_installed("skype")
       end
 
+      test "installs zoom" do
+        assert_snap_installed("zoom-client")
+      end
+
       test "installs spotify" do
         assert_snap_installed("spotify")
       end
@@ -83,6 +87,10 @@ module Bootstrap
 
       test "does not install skype" do
         assert_snap_not_installed("skype")
+      end
+
+      test "does not install zoom" do
+        assert_snap_not_installed("zoom-client")
       end
 
       test "does not install spotify" do
