@@ -68,6 +68,10 @@ module Bootstrap
       test "installs slack" do
         assert_snap_installed("slack")
       end
+
+      test "installs gimp" do
+        assert_apt_installed("gimp")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -99,6 +103,10 @@ module Bootstrap
 
       test "does not install slack" do
         assert_snap_not_installed("slack")
+      end
+
+      test "does not install gimp" do
+        assert_apt_not_installed("gimp")
       end
     end
 
