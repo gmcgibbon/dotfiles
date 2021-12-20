@@ -1,3 +1,5 @@
 #!/bin/bash
 
 vim +PluginInstall +qall
+nvm install node
+nvm alias default node
