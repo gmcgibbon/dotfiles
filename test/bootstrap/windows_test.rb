@@ -48,6 +48,10 @@ module Bootstrap
       assert_winget_installed("Slack")
     end
 
+    test "installs gimp" do
+      assert_winget_installed("GIMP")
+    end
+
     private
 
     def assert_winget_installed(package_name)

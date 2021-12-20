@@ -9,6 +9,7 @@ gui do
   install "steam"
   install "spotify"
   install "slack"
+  install "gimp"
 
   macos do
     install "iterm2"

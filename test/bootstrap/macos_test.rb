@@ -76,6 +76,10 @@ module Bootstrap
       test "installs slack" do
         assert_brew_cask_installed("slack")
       end
+
+      test "installs gimp" do
+        assert_brew_cask_installed("gimp")
+      end
     else
       test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
@@ -111,6 +115,10 @@ module Bootstrap
 
       test "does not install slack" do
         assert_brew_cask_not_installed("slack")
+      end
+
+      test "does not install gimp" do
+        assert_brew_cask_not_installed("gimp")
       end
     end
 
