@@ -11,6 +11,7 @@ module Bootstrap
   def self.call(file)
     Script.new.instance_eval(
       File.read(file),
+      file.to_s,
     )
   end
 end

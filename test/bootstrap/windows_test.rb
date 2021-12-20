@@ -36,6 +36,10 @@ module Bootstrap
       assert_winget_installed("Skype")
     end
 
+    test "installs zoom" do
+      assert_winget_installed("Zoom")
+    end
+
     test "installs spotify" do
       assert_winget_installed("Spotify")
     end

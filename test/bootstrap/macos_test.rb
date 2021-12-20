@@ -65,6 +65,10 @@ module Bootstrap
         assert_brew_cask_installed("skype")
       end
 
+      test "installs zoom" do
+        assert_brew_cask_installed("zoom")
+      end
+
       test "installs spotify" do
         assert_brew_cask_installed("spotify")
       end
@@ -95,6 +99,10 @@ module Bootstrap
 
       test "does not install skype" do
         assert_brew_cask_not_installed("skype")
+      end
+
+      test "does not install zoom" do
+        assert_brew_cask_not_installed("zoom")
       end
 
       test "does not install spotify" do
