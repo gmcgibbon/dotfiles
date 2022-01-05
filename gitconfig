@@ -22,8 +22,8 @@
 [include]
   path = ~/.gitconfig.local
 [gc]
-	writeCommitGraph = true
+  writeCommitGraph = true
 [diff]
-	algorithm = patience
+  algorithm = patience
 [init]
-	defaultBranch = main
+  defaultBranch = main
