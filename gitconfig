@@ -14,9 +14,12 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+	commitGraph = true
 [merge]
   ff = only
 [fetch]
   prune = true
 [include]
   path = ~/.gitconfig.local
+[gc]
+	writeCommitGraph = true
