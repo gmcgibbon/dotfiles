@@ -25,3 +25,5 @@
 	writeCommitGraph = true
 [diff]
 	algorithm = patience
+[init]
+	defaultBranch = main
