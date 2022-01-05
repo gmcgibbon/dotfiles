@@ -4,8 +4,9 @@ alias b="bundle"
 alias be="bundle exec"
 
 # rbenv
-which rbenv &> /dev/null || export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+export RBENV_DIR="$HOME/.rbenv"
+which rbenv &> /dev/null || export PATH="$RBENV_DIR/bin:$PATH"
+[ -x "$RBENV_DIR/bin/rbenv" ] && eval "$(rbenv init -)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
