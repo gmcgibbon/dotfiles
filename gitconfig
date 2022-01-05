@@ -23,3 +23,5 @@
   path = ~/.gitconfig.local
 [gc]
 	writeCommitGraph = true
+[diff]
+	algorithm = patience
