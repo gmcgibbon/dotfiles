@@ -14,7 +14,8 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-	commitGraph = true
+  commitGraph = true
+  editor = vim
 [merge]
   ff = only
 [fetch]
