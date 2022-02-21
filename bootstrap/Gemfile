@@ -2,7 +2,7 @@
 
 source("https://rubygems.org")
 
-gem("byebug")
+gem("debug")
 gem("minitest")
 gem("rake")
 gem("rubocop", require: false)
