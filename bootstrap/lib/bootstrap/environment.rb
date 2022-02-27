@@ -15,11 +15,9 @@ module Bootstrap
     end
 
     def platform
-      @platform ||= begin
-        PLATFORM.find do |symbol, regex|
-          break symbol if RUBY_PLATFORM.downcase.match?(regex)
-        end || raise(NotImplementedError)
-      end
+      @platform ||= PLATFORM.find do |symbol, regex|
+        break symbol if RUBY_PLATFORM.downcase.match?(regex)
+      end || raise(NotImplementedError)
     end
 
     def constraints
@@ -57,9 +55,9 @@ module Bootstrap
     end
 
     def package_manager_hash(*package_managers, default:)
-      hash = package_managers.map do |package_manager|
+      hash = package_managers.to_h do |package_manager|
         [package_manager.command_name, package_manager]
-      end.to_h
+      end
       hash.default = default
       hash
     end
