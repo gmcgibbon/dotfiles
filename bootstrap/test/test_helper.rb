@@ -84,6 +84,7 @@ module Bootstrap
     include StubHelpers
     include TestHelpers
 
+    alias_method :assert_not, :refute
     alias_method :assert_not_predicate, :refute_predicate
     alias_method :assert_not_operator, :refute_operator
     alias_method :assert_not_equal, :refute_equal

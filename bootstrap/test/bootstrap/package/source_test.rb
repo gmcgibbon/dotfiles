@@ -8,7 +8,7 @@ module Bootstrap
       test "#location" do
         assert_equal "some_location", Source.new(package, brew: "some_location").location
         assert_equal "some_location", Source.new(package, apt: "some_location").location
-        assert_equal false, Source.new(package).location
+        assert_not Source.new(package).location
       end
 
       test "#script" do
