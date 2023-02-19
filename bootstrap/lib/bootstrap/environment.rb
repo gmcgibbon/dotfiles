@@ -48,7 +48,7 @@ module Bootstrap
     def gui?
       case platform
       when :macos, :linux
-        !(ENV["DISPLAY"] || ENV["TERM_PROGRAM"]).nil?
+        !(ENV["DISPLAY"] || ENV.fetch("TERM_PROGRAM", nil)).nil?
       when :windows
         true
       end
