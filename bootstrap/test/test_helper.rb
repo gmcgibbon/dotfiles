@@ -88,14 +88,5 @@ module Bootstrap
     alias_method :assert_not_predicate, :refute_predicate
     alias_method :assert_not_operator, :refute_operator
     alias_method :assert_not_equal, :refute_equal
-
-    teardown do
-      # Ruby 3.1 bug, fixed by https://github.com/ruby/ruby/pull/5592.
-      # For now, this resets the system method.
-      Environment.singleton_class.undef_method(:system)
-      Environment.singleton_class.define_method(:system) do |*args|
-        Kernel.system(*args)
-      end
-    end
   end
 end
