@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# aliases
 alias b="bundle"
 alias be="bundle exec"
+
+# path
+export PATH="$PATH:$HOME/.bin"
 
 # rbenv
 export RBENV_DIR="$HOME/.rbenv"
