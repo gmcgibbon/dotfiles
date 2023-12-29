@@ -9,7 +9,7 @@ module Bootstrap
     end
 
     test "installs vim" do
-      assert_winget_installed("Vim")
+      assert_winget_installed("vim.vim")
     end
 
     test "installs firefox" do
@@ -17,11 +17,11 @@ module Bootstrap
     end
 
     test "installs flux" do
-      assert_winget_installed("Flux")
+      assert_winget_installed("flux.flux")
     end
 
     test "installs vlc" do
-      assert_winget_installed("Vlc")
+      assert_winget_installed("VideoLAN.VLC")
     end
 
     test "installs steam" do
@@ -29,7 +29,7 @@ module Bootstrap
     end
 
     test "installs visual studio code" do
-      assert_winget_installed("VisualStudioCode")
+      assert_winget_installed("Microsoft.VisualStudioCode")
     end
 
     test "installs skype" do
@@ -42,20 +42,20 @@ module Bootstrap
 
     test "installs spotify" do
       assert_winget_installed("Spotify")
-    end
+    end unless ENV["CI"] # NOTE: Doesn't install on an elevated prompt.
 
     test "installs slack" do
       assert_winget_installed("Slack")
     end
 
     test "installs gimp" do
-      assert_winget_installed("GIMP")
+      assert_winget_installed("GIMP.GIMP")
     end
 
     private
 
     def assert_winget_installed(package_name)
-      assert_predicate(Open3.capture3("winget show #{package_name}").last, :success?)
+      assert_predicate(Open3.capture3("winget list #{package_name}").last, :success?)
     end
   end
 end

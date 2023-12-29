@@ -6,6 +6,7 @@ brew install ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 if [[ -n $CI ]]; then
+  ruby -v
   bin/bootstrap/redo
   env RCRC=./rcrc rcup -f
   ruby test/bootstrap/macos_test.rb

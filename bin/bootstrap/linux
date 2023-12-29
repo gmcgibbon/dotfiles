@@ -6,6 +6,7 @@ sudo snap install ruby --classic
 sudo dpkg --add-architecture i386
 
 if [[ -n $CI ]]; then
+  ruby -v
   bin/bootstrap/redo
   env RCRC=./rcrc rcup -f
   ruby test/bootstrap/linux_test.rb
