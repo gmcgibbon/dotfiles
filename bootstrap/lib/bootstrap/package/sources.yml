@@ -47,6 +47,8 @@ spotify:
     snap: true
 
 visual-studio-code:
+  windows:
+    name: Microsoft.VisualStudioCode
   linux:
     name: code
     snap: true
@@ -61,5 +63,19 @@ zoom:
     snap: true
 
 vlc:
+  windows:
+    name: VideoLAN.VLC
   linux:
     snap: true
+
+vim:
+  windows:
+    name: vim.vim
+
+flux:
+  windows:
+    name: flux.flux
+
+gimp:
+  windows:
+    name: GIMP.GIMP

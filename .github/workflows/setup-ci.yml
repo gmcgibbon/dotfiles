@@ -25,14 +25,18 @@ jobs:
             runner: macos-latest
             script: bin/bootstrap/macos
             env: {}
-          # NOTE: winget appears to not be supported by actions yet.
-          # - runner: windows-latest
-          #   script: bin/bootstrap/windows.bat
+          - name: windows
+            runner: windows-latest
+            script: bin/bootstrap/windows.bat
+            env: {}
     name: ${{ matrix.platform.name }}
     runs-on: ${{ matrix.platform.runner }}
     env: ${{ matrix.platform.env }}
     steps:
       - uses: actions/checkout@v2
         name: Checkout
+      - name: Install Winget
+        if: ${{ matrix.platform.name == 'windows' }}
+        uses: Cyberboss/install-winget@v1
       - name: ⚙️ Setup
         run: ${{ matrix.platform.script }}
