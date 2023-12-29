@@ -38,8 +38,8 @@ module Bootstrap
         system(*args)
       end
 
-      def command(*args)
-        run(command_name, *args)
+      def command(*)
+        run(command_name, *)
       end
     end
   end
@@ -69,7 +69,7 @@ module Bootstrap
         @cask_packages ||= begin
           require("yaml")
           if File.exist?(CASKS_FILE)
-            YAML.safe_load(File.read(CASKS_FILE))
+            YAML.safe_load_file(CASKS_FILE)
           else
             download_casks.tap { |data| File.write(CASKS_FILE, YAML.dump(data)) }
           end

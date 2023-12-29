@@ -11,7 +11,7 @@ module Bootstrap
     attr_reader :name, :environment
 
     def self.sources
-      @sources ||= YAML.safe_load(File.read(SOURCE_FILE))
+      @sources ||= YAML.safe_load_file(SOURCE_FILE)
     end
 
     def initialize(name, environment:)
@@ -22,7 +22,8 @@ module Bootstrap
     def install
       return first_party_install if source.first_party?
       return third_party_install if source.third_party?
-      return script_install      if source.script?
+
+      script_install if source.script?
     end
 
     private

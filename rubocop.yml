@@ -11,6 +11,9 @@ Style/Documentation:
 Style/Alias:
   Enabled: false
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     default: ()
