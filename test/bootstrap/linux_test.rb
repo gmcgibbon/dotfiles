@@ -42,7 +42,7 @@ module Bootstrap
       end
 
       test "installs vlc" do
-        assert_apt_installed("vlc")
+        assert_snap_installed("vlc")
       end
 
       test "installs steam" do
@@ -78,7 +78,7 @@ module Bootstrap
       end
 
       test "does not install vlc" do
-        assert_apt_not_installed("vlc")
+        assert_snap_not_installed("vlc")
       end
 
       test "does not install steam" do

@@ -59,3 +59,7 @@ zoom:
   linux:
     name: zoom-client
     snap: true
+
+vlc:
+  linux:
+    snap: true
