@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.3
   NewCops: enable
 
 Naming/BlockForwarding:
@@ -9,6 +9,9 @@ Style/Documentation:
   Enabled: false
 
 Style/Alias:
+  Enabled: false
+
+Style/FetchEnvVar:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
