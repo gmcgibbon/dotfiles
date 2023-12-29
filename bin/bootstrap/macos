@@ -1,8 +1,9 @@
 #!/bin/bash
 
-which brew >/dev/null || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-which brew >/dev/null || echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)"
-which ruby >/dev/null || brew install ruby
+which brew > /dev/null || bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+which brew > /dev/null || echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)"
+brew install ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 if [[ -n $CI ]]; then
   bin/bootstrap/redo
