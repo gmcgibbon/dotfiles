@@ -1,4 +1,5 @@
 #!/bin/bash
 
+source /opt/dev/sh/chruby/chruby.sh && chruby 3.3.0
 $HOME/dotfiles/bin/bootstrap/redo
 env RCRC=$HOME/dotfiles/rcrc rcup -f
