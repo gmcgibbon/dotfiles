@@ -6,7 +6,7 @@
 - [Vim configuration](vimrc)
 - [Git configuration](gitconfig)
 - [Rubocop configuration](rubocop.yml)
-- Cross platform bootstrap script ([mac](bin/bootstrap/macos), [debian](bin/bootstrap/linux), [windows](bin/bootstrap/windows.bat))
+- Cross platform bootstrap script ([mac](bin/bootstrap/macos), [ubuntu](bin/bootstrap/linux), [fedora](bin/bootstrap/linux) [windows](bin/bootstrap/windows.bat))
 - Application bootstrap ([list](Bootstrapfile))
 
 #### Installation

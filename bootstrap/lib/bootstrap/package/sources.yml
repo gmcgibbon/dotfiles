@@ -5,67 +5,106 @@ rcm:
 heroku:
   macos:
     brew: heroku/brew
-  linux:
-    script: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  linux: &linux
+    script: |
+      if ! command -v heroku >/dev/null 2>&1; then
+        curl https://cli-assets.heroku.com/install.sh | sh
+      fi
+  ubuntu:
+    <<: *linux
+  fedora:
+    <<: *linux
 
 rbenv:
-  linux:
-    script: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  linux: &linux
+    script: |
+      git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+  ubuntu:
+    <<: *linux
+  fedora:
+    <<: *linux
 
 nvm:
+  unix: &unix
+    script: git clone https://github.com/nvm-sh/nvm.git ~/.nvm
   macos:
-    script: git clone https://github.com/nvm-sh/nvm.git ~/.nvm
-  linux:
-    script: git clone https://github.com/nvm-sh/nvm.git ~/.nvm
+    <<: *unix
+  ubuntu:
+    <<: *unix
+  fedora:
+    <<: *unix
 
 antigen:
+  unix: &unix
+    script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
   macos:
-    script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
-  linux:
-    script: git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
+    <<: *unix
+  ubuntu:
+    <<: *unix
+  fedora:
+    <<: *unix
 
 vundle:
+  unix: &unix
+    script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
   macos:
-    script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-  linux:
-    script: git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+    <<: *unix
+  ubuntu:
+    <<: *unix
+  fedora:
+    <<: *unix
 
 steam:
-  linux:
+  ubuntu:
     apt: multiverse
 
-atom:
-  linux:
-    snap: true
-
 skype:
-  linux:
+  ubuntu:
     snap: true
+  fedora:
+    flatpak: true
+    name: com.skype.Client
 
 spotify:
-  linux:
+  ubuntu:
     snap: true
+  fedora:
+    flatpak: true
+    name: com.spotify.Client
 
 visual-studio-code:
   windows:
     name: Microsoft.VisualStudioCode
-  linux:
+  ubuntu:
     name: code
     snap: true
+  fedora:
+    dnf:
+      name: Visual Studio Code
+      baseurl: https://packages.microsoft.com/yumrepos/vscode
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    name: code
 
 slack:
-  linux:
+  ubuntu:
     snap: true
+  fedora:
+    flatpak: true
+    name: com.slack.Slack
 
 zoom:
-  linux:
+  ubuntu:
     name: zoom-client
     snap: true
+  fedora:
+    flatpak: true
+    name: us.zoom.Zoom
 
 vlc:
   windows:
     name: VideoLAN.VLC
-  linux:
+  ubuntu:
     snap: true
 
 vim:
@@ -79,3 +118,7 @@ flux:
 gimp:
   windows:
     name: GIMP.GIMP
+
+qemu:
+  ubuntu:
+    name: qemu-system

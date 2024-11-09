@@ -11,7 +11,7 @@ module Bootstrap
     attr_reader :name, :environment
 
     def self.sources
-      @sources ||= YAML.safe_load_file(SOURCE_FILE)
+      @sources ||= YAML.safe_load_file(SOURCE_FILE, aliases: true)
     end
 
     def initialize(name, environment:)
@@ -39,7 +39,8 @@ module Bootstrap
     def source
       @source ||= Source.new(
         self,
-        **self.class.sources.dig(name, @environment.platform.to_s).to_h.transform_keys(&:to_sym),
+        **self.class.sources.dig(name, @environment.platform.to_s)
+          .to_h.transform_keys(&:to_sym),
       )
     end
 

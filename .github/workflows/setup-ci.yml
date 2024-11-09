@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         platform:
-          - name: linux
+          - name: ubuntu
             runner: ubuntu-latest
             script: bin/bootstrap/linux
             env:
@@ -17,7 +17,7 @@ jobs:
             script: bin/bootstrap/macos
             env:
               DISPLAY: 1
-          - name: linux-headless
+          - name: ubuntu-headless
             runner: ubuntu-latest
             script: bin/bootstrap/linux
             env: {}

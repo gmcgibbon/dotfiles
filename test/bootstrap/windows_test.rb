@@ -37,8 +37,8 @@ module Bootstrap
     end
 
     test "installs zoom" do
-      assert_winget_installed("Zoom")
-    end
+      assert_winget_installed("Zoom.Zoom")
+    end unless ENV["CI"] # NOTE: Doesn't install on an elevated prompt.
 
     test "installs spotify" do
       assert_winget_installed("Spotify")
@@ -50,6 +50,10 @@ module Bootstrap
 
     test "installs gimp" do
       assert_winget_installed("GIMP.GIMP")
+    end
+
+    test "installs qemu" do
+      assert_winget_installed("SoftwareFreedomConservancy.QEMU")
     end
 
     private

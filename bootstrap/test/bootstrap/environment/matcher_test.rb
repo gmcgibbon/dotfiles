@@ -16,9 +16,9 @@ module Bootstrap
       end
 
       test "#platforms" do
-        assert_equal PLATFORM.keys, Matcher.new(:all).platforms
-        assert_equal %i(macos linux), Matcher.new(:unix).platforms
-        PLATFORM.each_key do |platform|
+        assert_equal Environment.platforms, Matcher.new(:all).platforms
+        assert_equal %i(macos fedora ubuntu), Matcher.new(:unix).platforms
+        Environment.platforms.each do |platform|
           assert_equal [platform], Matcher.new(platform).platforms
         end
       end
@@ -27,34 +27,46 @@ module Bootstrap
         assert_equal({ gui: true }, Matcher.new(:all, gui: true).constraints)
       end
 
-      test "#match?" do
+      test "#match? all" do
         assert_operator Matcher.new(:all), :match?, macos_environment
-        assert_operator Matcher.new(:all), :match?, linux_environment
+        assert_operator Matcher.new(:all), :match?, ubuntu_environment
+        assert_operator Matcher.new(:all), :match?, fedora_environment
         assert_operator Matcher.new(:all), :match?, windows_environment
+      end
 
+      test "#match? unix" do
         assert_operator Matcher.new(:unix), :match?, macos_environment
-        assert_operator Matcher.new(:unix), :match?, linux_environment
+        assert_operator Matcher.new(:unix), :match?, ubuntu_environment
+        assert_operator Matcher.new(:unix), :match?, fedora_environment
         assert_not_operator Matcher.new(:unix), :match?, windows_environment
+      end
 
+      test "#match? macos" do
         assert_operator Matcher.new(:macos), :match?, macos_environment
-        assert_not_operator Matcher.new(:macos), :match?, linux_environment
+        assert_not_operator Matcher.new(:macos), :match?, ubuntu_environment
+        assert_not_operator Matcher.new(:macos), :match?, fedora_environment
         assert_not_operator Matcher.new(:macos), :match?, windows_environment
+      end
 
+      test "#match? linux" do
         assert_not_operator Matcher.new(:linux), :match?, macos_environment
-        assert_operator Matcher.new(:linux), :match?, linux_environment
+        assert_operator Matcher.new(:linux), :match?, ubuntu_environment
+        assert_operator Matcher.new(:linux), :match?, fedora_environment
         assert_not_operator Matcher.new(:linux), :match?, windows_environment
+      end
 
+      test "#match? windows" do
         assert_not_operator Matcher.new(:windows), :match?, macos_environment
-        assert_not_operator Matcher.new(:windows), :match?, linux_environment
+        assert_not_operator Matcher.new(:windows), :match?, ubuntu_environment
+        assert_not_operator Matcher.new(:windows), :match?, fedora_environment
         assert_operator Matcher.new(:windows), :match?, windows_environment
+      end
 
-        assert_operator Matcher.new(:linux, gui: true), :match?, linux_environment("DISPLAY" => "1")
-        assert_operator Matcher.new(:linux, gui: true), :match?, linux_environment("TERM_PROGRAM" => "1")
-        assert_not_operator(
-          Matcher.new(:linux, gui: true),
-          :match?,
-          linux_environment("DISPLAY" => nil, "TERM_PROGRAM" => nil),
-        )
+      test "#match? gui" do
+        assert_operator Matcher.new(:ubuntu, gui: true), :match?, ubuntu_environment("DISPLAY" => "1")
+        assert_operator Matcher.new(:fedora, gui: true), :match?, fedora_environment("TERM_PROGRAM" => "1")
+        assert_not_operator(Matcher.new(:linux, gui: true), :match?,
+                            ubuntu_environment("DISPLAY" => nil, "TERM_PROGRAM" => nil),)
       end
 
       test "#==" do
@@ -88,10 +100,22 @@ module Bootstrap
         end
       end
 
-      def linux_environment(env = {})
+      def ubuntu_environment(env = {})
         with_ruby_platform("Linux") do
-          with_env(**env) do
-            Environment.new.tap(&:platform).tap(&:constraints)
+          with_linux_version("Ubuntu") do
+            with_env(**env) do
+              Environment.new.tap(&:platform).tap(&:constraints)
+            end
+          end
+        end
+      end
+
+      def fedora_environment(env = {})
+        with_ruby_platform("Linux") do
+          with_linux_version("Red Hat") do
+            with_env(**env) do
+              Environment.new.tap(&:platform).tap(&:constraints)
+            end
           end
         end
       end

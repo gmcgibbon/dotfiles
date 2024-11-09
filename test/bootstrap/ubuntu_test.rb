@@ -3,7 +3,7 @@
 require_relative("test_helper")
 
 module Bootstrap
-  class LinuxTest < TestCase
+  class UbuntuTest < TestCase
     test "installs antigen" do
       assert_installed_at("~/.zsh/antigen")
     end
@@ -72,6 +72,10 @@ module Bootstrap
       test "installs gimp" do
         assert_apt_installed("gimp")
       end
+
+      test "installs qemu" do
+        assert_apt_installed("qemu")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -107,6 +111,10 @@ module Bootstrap
 
       test "does not install gimp" do
         assert_apt_not_installed("gimp")
+      end
+
+      test "does not install qemu" do
+        assert_apt_not_installed("qemu")
       end
     end
 

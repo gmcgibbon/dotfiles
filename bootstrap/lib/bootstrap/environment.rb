@@ -7,17 +7,29 @@ module Bootstrap
       macos: /darwin/,
       linux: /linux/,
     }.freeze
+    DISTRO = {
+      fedora: /Red Hat/,
+      ubuntu: /Ubuntu/,
+    }.freeze
 
-    private_constant(:PLATFORM)
+    private_constant(:PLATFORM, :DISTRO)
 
     class << self
       public :system
+
+      def version
+        `cat /proc/version`
+      end
+
+      def platforms
+        @platforms ||= PLATFORM.except(:linux).merge(DISTRO).keys
+      end
     end
 
     def platform
       @platform ||= PLATFORM.find do |symbol, regex|
-        break symbol if RUBY_PLATFORM.downcase.match?(regex)
-      end || raise(NotImplementedError)
+        break distro(symbol) if RUBY_PLATFORM.downcase.match?(regex)
+      end || raise(NotImplementedError, "Couldn't determine platform")
     end
 
     def constraints
@@ -28,8 +40,10 @@ module Bootstrap
       case platform
       when :macos
         package_manager_hash(Brew, default: Brew)
-      when :linux
+      when :ubuntu
         package_manager_hash(Apt, Snap, default: Apt)
+      when :fedora
+        package_manager_hash(Dnf, Flatpak, default: Dnf)
       when :windows
         package_manager_hash(Winget, default: Winget)
       end
@@ -45,9 +59,20 @@ module Bootstrap
 
     private
 
+    def distro(platform)
+      if platform == :linux
+        version = self.class.version
+        DISTRO.find do |symbol, regex|
+          break symbol if version.match?(regex)
+        end || raise(NotImplementedError, "Couldn't determine Linux platform")
+      else
+        platform
+      end
+    end
+
     def gui?
       case platform
-      when :macos, :linux
+      when :macos, :ubuntu, :fedora
         !(ENV["DISPLAY"] || ENV.fetch("TERM_PROGRAM", nil)).nil?
       when :windows
         true

@@ -6,7 +6,7 @@ module Bootstrap
       attr_reader :platforms, :constraints
 
       def initialize(*groups, **constraints)
-        @platforms = groups.flat_map { |group| expand(group) }
+        @platforms = groups.flat_map { |group| expand(group) }.uniq
         @constraints = constraints
       end
 
@@ -32,13 +32,23 @@ module Bootstrap
       def expand(group)
         case group
         when :all
-          PLATFORM.keys.dup
+          Environment.platforms.dup
         when :none
           []
         when :unix
-          %i(macos linux)
+          %i(macos fedora ubuntu)
+        when :linux
+          %i(fedora ubuntu)
         else
-          PLATFORM.keys.include?(group) ? [group] : raise(NotImplementedError)
+          default_platform(group)
+        end
+      end
+
+      def default_platform(group)
+        if Environment.platforms.include?(group)
+          [group]
+        else
+          raise(NotImplementedError, "Group #{group} not found")
         end
       end
     end

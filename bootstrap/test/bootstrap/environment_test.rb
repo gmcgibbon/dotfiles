@@ -12,12 +12,28 @@ module Bootstrap
       assert_respond_to Environment, :system
     end
 
-    test "#platform on linux" do
+    test ".platforms" do
+      assert_equal(%i(windows macos fedora ubuntu), Environment.platforms)
+    end
+
+    test "#platform on ubuntu" do
       with_ruby_platform("Some.Linux") do
-        assert_equal(:linux, @environment.platform)
+        with_linux_version("Ubuntu") do
+          assert_equal(:ubuntu, @environment.platform)
+        end
       end
 
-      assert_same(:linux, @environment.platform)
+      assert_same(:ubuntu, @environment.platform)
+    end
+
+    test "#platform on fedora" do
+      with_ruby_platform("Some.Linux") do
+        with_linux_version("Red Hat") do
+          assert_equal(:fedora, @environment.platform)
+        end
+      end
+
+      assert_same(:fedora, @environment.platform)
     end
 
     test "#platform on mac" do
@@ -46,24 +62,30 @@ module Bootstrap
 
     test "#constraints gui with display" do
       with_ruby_platform("Some.Linux") do
-        with_env("DISPLAY" => "1") do
-          assert_equal({ gui: true }, @environment.constraints)
+        with_linux_version("Ubuntu") do
+          with_env("DISPLAY" => "1") do
+            assert_equal({ gui: true }, @environment.constraints)
+          end
         end
       end
     end
 
     test "#constraints gui with terminal program" do
       with_ruby_platform("Some.Linux") do
-        with_env("TERM_PROGRAM" => "1") do
-          assert_equal({ gui: true }, @environment.constraints)
+        with_linux_version("Ubuntu") do
+          with_env("TERM_PROGRAM" => "1") do
+            assert_equal({ gui: true }, @environment.constraints)
+          end
         end
       end
     end
 
     test "#constraints gui with no display" do
       with_ruby_platform("Some.Linux") do
-        with_env("DISPLAY" => nil, "TERM_PROGRAM" => nil) do
-          assert_equal({ gui: false }, @environment.constraints)
+        with_linux_version("Ubuntu") do
+          with_env("DISPLAY" => nil, "TERM_PROGRAM" => nil) do
+            assert_equal({ gui: false }, @environment.constraints)
+          end
         end
       end
     end
@@ -74,10 +96,21 @@ module Bootstrap
       end
     end
 
-    test "#package_managers on linux" do
+    test "#package_manager on ubuntu" do
       with_ruby_platform("Some.Linux") do
-        assert_equal({ "apt" => Apt, "snap" => Snap }, @environment.package_managers)
-        assert_equal(Apt, @environment.package_managers.default)
+        with_linux_version("Ubuntu") do
+          assert_equal({ "apt" => Apt, "snap" => Snap }, @environment.package_managers)
+          assert_equal(Apt, @environment.package_managers.default)
+        end
+      end
+    end
+
+    test "#package_manager on fedora" do
+      with_ruby_platform("Some.Linux") do
+        with_linux_version("Red Hat") do
+          assert_equal({ "dnf" => Dnf, "flatpak" => Flatpak }, @environment.package_managers)
+          assert_equal(Dnf, @environment.package_managers.default)
+        end
       end
     end
 
