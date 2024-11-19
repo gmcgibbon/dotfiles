@@ -1,16 +1,28 @@
 #!/bin/bash
 
-sudo apt-get install -y snapd
-sudo snap install ruby --classic
+if command -v apt >/dev/null 2>&1; then
+  sudo apt install -y ruby-full
+  sudo dpkg --add-architecture i386
 
-sudo dpkg --add-architecture i386
+  if [[ -n $CI ]]; then
+    ruby -v
+    bin/bootstrap/redo
+    env RCRC=./rcrc rcup -f
+    ruby test/bootstrap/ubuntu_test.rb
+  else
+    $HOME/dotfiles/bin/bootstrap/redo
+    env RCRC=$HOME/dotfiles/rcrc rcup -f
+  fi
+elif command -v dnf >/dev/null 2>&1; then
+  sudo dnf install -y ruby
 
-if [[ -n $CI ]]; then
-  ruby -v
-  bin/bootstrap/redo
-  env RCRC=./rcrc rcup -f
-  ruby test/bootstrap/linux_test.rb
-else
-  $HOME/dotfiles/bin/bootstrap/redo
-  env RCRC=$HOME/dotfiles/rcrc rcup -f
+  if [[ -n $CI ]]; then
+    ruby -v
+    bin/bootstrap/redo
+    env RCRC=./rcrc rcup -f
+    ruby test/bootstrap/fedora_test.rb
+  else
+    $HOME/dotfiles/bin/bootstrap/redo
+    env RCRC=$HOME/dotfiles/rcrc rcup -f
+  fi
 fi

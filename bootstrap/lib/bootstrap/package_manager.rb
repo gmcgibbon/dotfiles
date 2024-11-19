@@ -38,8 +38,8 @@ module Bootstrap
         system(*args)
       end
 
-      def command(*)
-        run(command_name, *)
+      def command(*args)
+        run(command_name, *args)
       end
     end
   end
@@ -126,5 +126,62 @@ module Bootstrap
     end
   end
 
-  private_constant(:PackageManager, :Brew, :Winget, :Apt, :Snap)
+  class Dnf < PackageManager
+    class << self
+      def install(package_name)
+        dnf("install", "-y", package_name)
+      end
+
+      def source(repo)
+        return if repo_exists?(repo)
+
+        repo_file = repo["name"].downcase.gsub(" ", "-")
+
+        File.write(
+          "#{repo_file}.repo",
+          "[#{repo_file}]\n#{serialize(repo)}",
+        )
+        dnf("update")
+      end
+
+      def sudo?
+        true
+      end
+
+      private
+
+      def repo_exists?(repo)
+        Dir["/etc/yum.repos.d/*"].find do |file|
+          File.read(file).match?(repo["baseurl"])
+        end
+      end
+
+      def serialize(repo)
+        array = repo.merge("gpgcheck" => 1, "enabled" => 1).to_a
+        array.map { |key, value| [key, value].join("=") }.join("\n")
+      end
+    end
+  end
+
+  class Flatpak < PackageManager
+    class << self
+      def install(package_name)
+        flatpak("install", "-y", "flathub", package_name)
+      end
+
+      def sudo?
+        true
+      end
+    end
+  end
+
+  private_constant(
+    :PackageManager,
+    :Brew,
+    :Winget,
+    :Apt,
+    :Snap,
+    :Dnf,
+    :Flatpak,
+  )
 end

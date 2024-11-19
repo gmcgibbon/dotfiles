@@ -10,6 +10,7 @@ gui do
   install "spotify"
   install "slack"
   install "gimp"
+  install "qemu"
 
   macos do
     install "iterm2"

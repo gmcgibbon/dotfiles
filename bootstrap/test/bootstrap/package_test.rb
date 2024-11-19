@@ -17,7 +17,10 @@ module Bootstrap
     end
 
     test ".sources" do
-      sources = YAML.load_file(File.expand_path("../../lib/bootstrap/package/sources.yml", __dir__))
+      sources = YAML.safe_load_file(
+        File.expand_path("../../lib/bootstrap/package/sources.yml", __dir__),
+        aliases: true,
+      )
       assert_equal sources, Package.sources
     end
 
@@ -52,7 +55,7 @@ module Bootstrap
     end
 
     def test_dependencies
-      YAML.load_file(file_fixture("sources.yml"))
+      YAML.safe_load_file(file_fixture("sources.yml"))
     end
   end
 
@@ -100,54 +103,64 @@ module Bootstrap
     end
   end
 
-  class PackageLinuxInstallTest < PackageInstallTest
-    test "#install on linux" do
+  class PackageUbuntuInstallTest < PackageInstallTest
+    test "#install on ubuntu" do
       with_ruby_platform("Linux") do
-        assert_called_with(Apt, :install, %w(pkg)) do
-          package.install
+        with_linux_version("Ubuntu") do
+          assert_called_with(Apt, :install, %w(pkg)) do
+            package.install
+          end
         end
       end
     end
 
-    test "#install on linux with third party source" do
+    test "#install on ubuntu with third party source" do
       with_ruby_platform("Linux") do
-        assert_called(Package, :sources, returns: test_dependencies) do
-          assert_called_with(Apt, :source, %w(ppa:dummy)) do
-            assert_called_with(Apt, :install, %w(third-party-pkg)) do
-              third_party_package.install
+        with_linux_version("Ubuntu") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Apt, :source, %w(ppa:dummy)) do
+              assert_called_with(Apt, :install, %w(third-party-pkg)) do
+                third_party_package.install
+              end
             end
           end
         end
       end
     end
 
-    test "#install on linux with script source" do
+    test "#install on ubuntu with script source" do
       with_ruby_platform("Linux") do
-        assert_called(Package, :sources, returns: test_dependencies) do
-          assert_called_with(Environment, :system, ["git clone for_linux"]) do
-            assert_not_called(Apt, :install) do
-              script_package.install
+        with_linux_version("Ubuntu") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Environment, :system, ["git clone for_ubuntu"]) do
+              assert_not_called(Apt, :install) do
+                script_package.install
+              end
             end
           end
         end
       end
     end
 
-    test "#install on linux with alias name" do
+    test "#install on ubuntu with alias name" do
       with_ruby_platform("Linux") do
-        assert_called(Package, :sources, returns: test_dependencies) do
-          assert_called_with(Apt, :install, %w(aliased_linux)) do
-            alias_package.install
+        with_linux_version("Ubuntu") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Apt, :install, %w(aliased_ubuntu)) do
+              alias_package.install
+            end
           end
         end
       end
     end
 
-    test "#install on linux with snap" do
+    test "#install on ubuntu with snap" do
       with_ruby_platform("Linux") do
-        assert_called(Package, :sources, returns: test_dependencies) do
-          assert_called_with(Snap, :install, %w(snap-pkg)) do
-            snap_package.install
+        with_linux_version("Ubuntu") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Snap, :install, %w(snap-pkg)) do
+              snap_package.install
+            end
           end
         end
       end
@@ -157,6 +170,80 @@ module Bootstrap
 
     def snap_package
       Package.new("snap-pkg", environment: Environment.new)
+    end
+  end
+
+  class PackageFedoraInstallTest < PackageInstallTest
+    test "#install on fedora" do
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called_with(Dnf, :install, %w(pkg)) do
+            package.install
+          end
+        end
+      end
+    end
+
+    test "#install on fedora with third party source" do
+      repo_source = {
+        "name" => "test", "baseurl" => "testuri", "gpgkey" => "testgpgkey",
+      }
+
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Dnf, :source, [repo_source]) do
+              assert_called_with(Dnf, :install, %w(third-party-pkg)) do
+                third_party_package.install
+              end
+            end
+          end
+        end
+      end
+    end
+
+    test "#install on fedora with script source" do
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Environment, :system, ["git clone for_fedora"]) do
+              assert_not_called(Dnf, :install) do
+                script_package.install
+              end
+            end
+          end
+        end
+      end
+    end
+
+    test "#install on fedora with alias name" do
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Dnf, :install, %w(aliased_fedora)) do
+              alias_package.install
+            end
+          end
+        end
+      end
+    end
+
+    test "#install on fedora with flatpak" do
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Flatpak, :install, %w(flatpak-pkg)) do
+              flatpak_package.install
+            end
+          end
+        end
+      end
+    end
+
+    private
+
+    def flatpak_package
+      Package.new("flatpak-pkg", environment: Environment.new)
     end
   end
 

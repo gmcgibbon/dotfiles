@@ -10,10 +10,22 @@ module Bootstrap
   end
 
   class ScriptTest < ScriptTestCase
-    test "#install on linux" do
+    test "#install on ubuntu" do
       with_ruby_platform("linux") do
-        assert_called_with(Apt, :install, %w(pkg)) do
-          @script.install("pkg")
+        with_linux_version("Ubuntu") do
+          assert_called_with(Apt, :install, %w(pkg)) do
+            @script.install("pkg")
+          end
+        end
+      end
+    end
+
+    test "#install on fedora" do
+      with_ruby_platform("linux") do
+        with_linux_version("Red Hat") do
+          assert_called_with(Dnf, :install, %w(pkg)) do
+            @script.install("pkg")
+          end
         end
       end
     end
@@ -22,9 +34,11 @@ module Bootstrap
   class ScriptConstrintsTest < ScriptTestCase
     test "#gui with display" do
       with_ruby_platform("linux") do
-        with_env("DISPLAY" => "1") do
-          assert_called(Apt, :install) do
-            @script.gui { @script.install("pkg") }
+        with_linux_version("Ubuntu") do
+          with_env("DISPLAY" => "1") do
+            assert_called(Apt, :install) do
+              @script.gui { @script.install("pkg") }
+            end
           end
         end
       end
@@ -33,8 +47,10 @@ module Bootstrap
     test "#gui with terminal program" do
       with_ruby_platform("linux") do
         with_env("TERM_PROGRAM" => "1") do
-          assert_called(Apt, :install) do
-            @script.gui { @script.install("pkg") }
+          with_linux_version("Ubuntu") do
+            assert_called(Apt, :install) do
+              @script.gui { @script.install("pkg") }
+            end
           end
         end
       end
@@ -43,8 +59,10 @@ module Bootstrap
     test "#gui without display" do
       with_ruby_platform("linux") do
         with_env("DISPLAY" => nil, "TERM_PROGRAM" => nil) do
-          assert_not_called(Apt, :install) do
-            @script.gui { @script.install("pkg") }
+          with_linux_version("Ubuntu") do
+            assert_not_called(Apt, :install) do
+              @script.gui { @script.install("pkg") }
+            end
           end
         end
       end
@@ -68,10 +86,22 @@ module Bootstrap
       end
     end
 
-    test "#unix on linux" do
+    test "#unix on ubuntu" do
       with_ruby_platform("linux") do
-        assert_called_with(Apt, :install, %w(pkg)) do
-          @script.unix { @script.install("pkg") }
+        with_linux_version("Ubuntu") do
+          assert_called_with(Apt, :install, %w(pkg)) do
+            @script.unix { @script.install("pkg") }
+          end
+        end
+      end
+    end
+
+    test "#unix on fedora" do
+      with_ruby_platform("linux") do
+        with_linux_version("Red Hat") do
+          assert_called_with(Dnf, :install, %w(pkg)) do
+            @script.unix { @script.install("pkg") }
+          end
         end
       end
     end
@@ -92,10 +122,22 @@ module Bootstrap
       end
     end
 
-    test "#macos on linux" do
+    test "#macos on ubuntu" do
       with_ruby_platform("linux") do
-        assert_not_called(Apt, :install) do
-          @script.macos { @script.install("pkg") }
+        with_linux_version("Ubuntu") do
+          assert_not_called(Apt, :install) do
+            @script.macos { @script.install("pkg") }
+          end
+        end
+      end
+    end
+
+    test "#macos on fedora" do
+      with_ruby_platform("linux") do
+        with_linux_version("Red Hat") do
+          assert_not_called(Dnf, :install) do
+            @script.macos { @script.install("pkg") }
+          end
         end
       end
     end
@@ -116,10 +158,22 @@ module Bootstrap
       end
     end
 
-    test "#linux on linux" do
+    test "#linux on ubuntu" do
       with_ruby_platform("linux") do
-        assert_called_with(Apt, :install, %w(pkg)) do
-          @script.linux { @script.install("pkg") }
+        with_linux_version("Ubuntu") do
+          assert_called_with(Apt, :install, %w(pkg)) do
+            @script.linux { @script.install("pkg") }
+          end
+        end
+      end
+    end
+
+    test "#linux on fedora" do
+      with_ruby_platform("linux") do
+        with_linux_version("Red Hat") do
+          assert_called_with(Dnf, :install, %w(pkg)) do
+            @script.linux { @script.install("pkg") }
+          end
         end
       end
     end
@@ -140,10 +194,22 @@ module Bootstrap
       end
     end
 
-    test "#windows on linux" do
+    test "#windows on ubuntu" do
       with_ruby_platform("linux") do
-        assert_not_called(Apt, :install) do
-          @script.windows { @script.install("pkg") }
+        with_linux_version("Ubuntu") do
+          assert_not_called(Apt, :install) do
+            @script.windows { @script.install("pkg") }
+          end
+        end
+      end
+    end
+
+    test "#windows on fedora" do
+      with_ruby_platform("linux") do
+        with_linux_version("Red Hat") do
+          assert_not_called(Dnf, :install) do
+            @script.windows { @script.install("pkg") }
+          end
         end
       end
     end

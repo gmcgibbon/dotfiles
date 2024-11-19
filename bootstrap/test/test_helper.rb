@@ -12,9 +12,13 @@ module Bootstrap
         times_called += 1
         returns
       end
-      object.stub(method_name, counter, &block)
-
-      assert_equal(times, times_called)
+      object.stub(method_name, counter, &block).tap do
+        assert_equal(
+          times,
+          times_called,
+          "Expected #{object}.#{method_name} to be called #{times} time(s), but was called #{times_called} time(s)",
+        )
+      end
     end
 
     def assert_not_called(object, method_name, &block)
@@ -31,6 +35,11 @@ module Bootstrap
       object.stub(method_name, mock, &block)
 
       mock.verify
+    end
+
+    def stub(object, method_name, returns: nil, &block)
+      returner = proc { returns }
+      object.stub(method_name, returner, &block)
     end
 
     def stub_const(const_symbol, value, on: Object)
@@ -61,6 +70,10 @@ module Bootstrap
   module TestHelpers
     def with_ruby_platform(platform, &block)
       stub_const(:RUBY_PLATFORM, platform, &block)
+    end
+
+    def with_linux_version(version, &block)
+      stub(Environment, :version, returns: version, &block)
     end
 
     def with_env(**env)

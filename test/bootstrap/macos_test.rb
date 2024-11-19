@@ -80,6 +80,10 @@ module Bootstrap
       test "installs gimp" do
         assert_brew_cask_installed("gimp")
       end
+
+      test "installs qemu" do
+        assert_brew_installed("qemu")
+      end
     else
       test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
@@ -120,12 +124,20 @@ module Bootstrap
       test "does not install gimp" do
         assert_brew_cask_not_installed("gimp")
       end
+
+      test "does not install qemu" do
+        assert_brew_not_installed("qemu")
+      end
     end
 
     private
 
     def assert_brew_installed(package_name)
       assert_predicate(Open3.capture3("brew list #{package_name}").last, :success?)
+    end
+
+    def assert_brew_not_installed(package_name)
+      assert_not_predicate(Open3.capture3("brew list #{package_name}").last, :success?)
     end
 
     def assert_brew_cask_installed(package_name)

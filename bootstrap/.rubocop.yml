@@ -1,6 +1,15 @@
 inherit_from:
   - ../rubocop.yml
 
+Style/GuardClause:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
 require:
   - rubocop-rake
   - rubocop-minitest

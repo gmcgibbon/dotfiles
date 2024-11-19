@@ -1,23 +1,37 @@
 third-party-pkg:
   macos:
     brew: dummy/tap
-  linux:
+  ubuntu:
     apt: ppa:dummy
+  fedora:
+    dnf:
+      name: test
+      baseurl: testuri
+      gpgkey: testgpgkey
+  
 
 script-pkg:
   macos:
     script: git clone for_mac
-  linux:
-    script: git clone for_linux
+  ubuntu:
+    script: git clone for_ubuntu
+  fedora:
+    script: git clone for_fedora
 
 alias-pkg:
   windows:
     name: aliased_win
   macos:
     name: aliased_mac
-  linux:
-    name: aliased_linux
+  ubuntu:
+    name: aliased_ubuntu
+  fedora:
+    name: aliased_fedora
 
 snap-pkg:
-  linux:
+  ubuntu:
     snap: true
+
+flatpak-pkg:
+  fedora:
+    flatpak: true
