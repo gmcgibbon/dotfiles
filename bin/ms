@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+# frozen_string_literal: true
+
+require "benchmark"
+
+class << Benchmark
+  def ms(&block)
+    1000 * realtime(&block)
+  end
+end
+
+system("") # warm up shelling out
+cmd = ARGV.map { |arg| arg.empty? ? "\"\"" : arg }.join(" ")
+ms = Benchmark.ms { system(cmd) }
+
+puts "#{ms}ms"
