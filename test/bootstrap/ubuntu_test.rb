@@ -32,8 +32,24 @@ module Bootstrap
       assert_apt_installed("vim")
     end
 
+    test "installs fastfetch" do
+      assert_apt_installed("fastfetch")
+    end
+
     test "installs heroku" do
       assert_apt_installed("heroku")
+    end
+
+    test "installs ripgrep" do
+      assert_apt_installed("ripgrep")
+    end
+
+    test "installs btop" do
+      assert_snap_installed("btop")
+    end
+
+    test "installs ollama" do
+      assert_installed_at("/usr/local/bin/ollama")
     end
 
     if gui?
@@ -76,6 +92,14 @@ module Bootstrap
       test "installs qemu" do
         assert_apt_installed("qemu")
       end
+
+      test "installs localsend" do
+        assert_snap_installed("localsend")
+      end
+
+      test "installs pinta" do
+        assert_apt_installed("pinta")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -115,6 +139,14 @@ module Bootstrap
 
       test "does not install qemu" do
         assert_apt_not_installed("qemu")
+      end
+
+      test "does not install localsend" do
+        assert_snap_not_installed("localsend")
+      end
+
+      test "does not install pinta" do
+        assert_apt_not_installed("pinta")
       end
     end
 
