@@ -122,3 +122,34 @@ gimp:
 qemu:
   ubuntu:
     name: qemu-system
+
+localsend:
+  windows:
+    name: LocalSend.LocalSend
+  fedora:
+    flatpak: true
+    name: org.localsend.localsend_app
+  ubuntu:
+    snap: true
+
+fastfetch:
+  windows:
+    name: Fastfetch-cli.Fastfetch
+  ubuntu:
+    apt: ppa:zhangsongcui3371/fastfetch
+
+btop:
+  ubuntu:
+    snap: true
+
+ollama:
+  linux: &linux
+    script: |
+      if ! command -v ollama >/dev/null 2>&1; then
+        curl -fsSL https://ollama.com/install.sh | sh
+      fi
+  fedora:
+    <<: *linux
+  ubuntu:
+    <<: *linux
+

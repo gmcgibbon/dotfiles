@@ -11,6 +11,8 @@ gui do
   install "slack"
   install "gimp"
   install "qemu"
+  install "localsend"
+  install "pinta"
 
   macos do
     install "iterm2"
@@ -31,6 +33,10 @@ unix do
   install "antigen"
   install "vundle"
   install "heroku"
+  install "ripgrep"
+  install "btop"
 end
 
+install "ollama"
+install "fastfetch"
 install "vim"

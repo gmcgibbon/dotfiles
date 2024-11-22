@@ -32,8 +32,24 @@ module Bootstrap
       assert_dnf_installed("vim")
     end
 
+    test "installs fastfetch" do
+      assert_dnf_installed("fastfetch")
+    end
+
     test "installs heroku" do
       assert_installed_at("/usr/local/bin/heroku")
+    end
+
+    test "installs ripgrep" do
+      assert_dnf_install("ripgrep")
+    end
+
+    test "installs btop" do
+      assert_dnf_install("btop")
+    end
+
+    test "installs olama" do
+      assert_installed_at("/usr/local/bin/ollama")
     end
 
     if gui?
@@ -76,6 +92,14 @@ module Bootstrap
       test "installs qemu" do
         assert_dnf_installed("qemu")
       end
+
+      test "installs localsend" do
+        assert_flatpak_installed("localsend")
+      end
+
+      test "installs pinta" do
+        assert_dnf_installed("pinta")
+      end
     else
       test "does not install flux" do
         assert_dnf_not_installed("fluxgui")
@@ -115,6 +139,14 @@ module Bootstrap
 
       test "does not install qemu" do
         assert_dnf_not_installed("qemu")
+      end
+
+      test "does not install localsend" do
+        assert_flatpak_not_installed("localsend")
+      end
+
+      test "does not install pinta" do
+        assert_dnf_not_installed("pinta")
       end
     end
 

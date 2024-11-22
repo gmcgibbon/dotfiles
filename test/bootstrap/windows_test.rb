@@ -56,6 +56,22 @@ module Bootstrap
       assert_winget_installed("SoftwareFreedomConservancy.QEMU")
     end
 
+    test "installs localsend" do
+      assert_winget_installed("localsend")
+    end
+
+    test "installs pinta" do
+      assert_winget_installed("pinta")
+    end
+
+    test "installs fastfetch" do
+      assert_winget_installed("fastfetch")
+    end
+
+    test "installs ollama" do
+      assert_winget_installed("ollama")
+    end
+
     private
 
     def assert_winget_installed(package_name)

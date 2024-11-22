@@ -32,8 +32,24 @@ module Bootstrap
       assert_brew_installed("vim")
     end
 
+    test "installs fastfetch" do
+      assert_brew_installed("fastfetch")
+    end
+
     test "installs heroku" do
       assert_brew_installed("heroku")
+    end
+
+    test "installs ripgrep" do
+      assert_brew_installed("ripgrep")
+    end
+
+    test "installs btop" do
+      assert_brew_installed("btop")
+    end
+
+    test "installs ollama" do
+      assert_brew_installed("ollama")
     end
 
     if gui?
@@ -84,6 +100,14 @@ module Bootstrap
       test "installs qemu" do
         assert_brew_installed("qemu")
       end
+
+      test "installs localsend" do
+        assert_brew_cask_installed("localsend")
+      end
+
+      test "installs pinta" do
+        assert_brew_cask_installed("pinta")
+      end
     else
       test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
@@ -127,6 +151,14 @@ module Bootstrap
 
       test "does not install qemu" do
         assert_brew_not_installed("qemu")
+      end
+
+      test "does not install localsend" do
+        assert_brew_cask_not_installed("localsend")
+      end
+
+      test "does not install pinta" do
+        assert_brew_cask_not_installed("pinta")
       end
     end
 
