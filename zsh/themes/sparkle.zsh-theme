@@ -1,6 +1,6 @@
 function ssh_connection() {
   if [[ -n $SSH_CONNECTION ]]; then
-    return "${BOLD_MAGENTA}(ssh) "
+    echo "${BOLD_MAGENTA}(ssh) "
   fi
 }
 
@@ -12,7 +12,7 @@ BOLD_RED="%{%B%F{red}%}"
 CLEAR="%{%f%k%b%}"
 
 
-PROMPT='%{$(ssh_connection)%}'
+PROMPT='$(ssh_connection)'
 PROMPT+="✨ "
 PROMPT+="${BOLD_YELLOW}%c${CLEAR} "
 PROMPT+='$(git_prompt_info)'
