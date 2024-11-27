@@ -41,15 +41,23 @@ module Bootstrap
     end
 
     test "installs ripgrep" do
-      assert_dnf_install("ripgrep")
+      assert_dnf_installed("ripgrep")
     end
 
     test "installs btop" do
-      assert_dnf_install("btop")
+      assert_dnf_installed("btop")
     end
 
     test "installs olama" do
       assert_installed_at("/usr/local/bin/ollama")
+    end
+
+    test "installs fzf" do
+      assert_dnf_installed("fzf")
+    end
+
+    test "installs fd" do
+      assert_dnf_installed("fd")
     end
 
     if gui?
@@ -100,6 +108,10 @@ module Bootstrap
       test "installs pinta" do
         assert_dnf_installed("pinta")
       end
+
+      test "installs xournalpp" do
+        assert_dnf_installed("xournalpp")
+      end
     else
       test "does not install flux" do
         assert_dnf_not_installed("fluxgui")
@@ -147,6 +159,10 @@ module Bootstrap
 
       test "does not install pinta" do
         assert_dnf_not_installed("pinta")
+      end
+
+      test "installs xournalpp" do
+        assert_dnf_not_installed("xournalpp")
       end
     end
 

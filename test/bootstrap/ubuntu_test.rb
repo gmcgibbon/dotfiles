@@ -52,6 +52,14 @@ module Bootstrap
       assert_installed_at("/usr/local/bin/ollama")
     end
 
+    test "installs fzf" do
+      assert_apt_installed("fzf")
+    end
+
+    test "installs fd" do
+      assert_apt_installed("fd")
+    end
+
     if gui?
       test "installs firefox" do
         assert_apt_installed("firefox")
@@ -100,6 +108,10 @@ module Bootstrap
       test "installs pinta" do
         assert_apt_installed("pinta")
       end
+
+      test "installs xournalpp" do
+        assert_apt_installed("xournalpp")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -147,6 +159,10 @@ module Bootstrap
 
       test "does not install pinta" do
         assert_apt_not_installed("pinta")
+      end
+
+      test "does not install xournalpp" do
+        assert_apt_not_installed("xournalpp")
       end
     end
 

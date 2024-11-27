@@ -52,6 +52,14 @@ module Bootstrap
       assert_brew_installed("ollama")
     end
 
+    test "installs fzf" do
+      assert_brew_installed("fzf")
+    end
+
+    test "installs fd" do
+      assert_brew_installed("fd")
+    end
+
     if gui?
       test "installs iterm2" do
         assert_brew_cask_installed("iterm2")
@@ -108,6 +116,10 @@ module Bootstrap
       test "installs pinta" do
         assert_brew_cask_installed("pinta")
       end
+
+      test "installs xournalpp" do
+        assert_brew_cask_installed("xournal++")
+      end
     else
       test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
@@ -159,6 +171,10 @@ module Bootstrap
 
       test "does not install pinta" do
         assert_brew_cask_not_installed("pinta")
+      end
+
+      test "does not install xournalpp" do
+        assert_brew_cask_not_installed("xournal++")
       end
     end
 
