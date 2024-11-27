@@ -153,3 +153,8 @@ ollama:
   ubuntu:
     <<: *linux
 
+xournalpp:
+  windows:
+    name: Xournal++.Xournal++
+  macos:
+    name: xournal++

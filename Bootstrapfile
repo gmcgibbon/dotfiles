@@ -13,6 +13,7 @@ gui do
   install "qemu"
   install "localsend"
   install "pinta"
+  install "xournalpp"
 
   macos do
     install "iterm2"
@@ -35,6 +36,8 @@ unix do
   install "heroku"
   install "ripgrep"
   install "btop"
+  install "fzf"
+  install "fd"
 end
 
 install "ollama"
