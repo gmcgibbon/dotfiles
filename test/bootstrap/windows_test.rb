@@ -72,6 +72,10 @@ module Bootstrap
       assert_winget_installed("ollama")
     end
 
+    test "installs xournalpp" do
+      assert_winget_installed("Xournal++.Xournal++")
+    end
+
     private
 
     def assert_winget_installed(package_name)
