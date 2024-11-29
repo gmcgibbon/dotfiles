@@ -112,6 +112,10 @@ module Bootstrap
       test "installs xournalpp" do
         assert_dnf_installed("xournalpp")
       end
+
+      test "installs alacritty" do
+        assert_dnf_installed("alacritty")
+      end
     else
       test "does not install flux" do
         assert_dnf_not_installed("fluxgui")
@@ -161,8 +165,12 @@ module Bootstrap
         assert_dnf_not_installed("pinta")
       end
 
-      test "installs xournalpp" do
+      test "does not install xournalpp" do
         assert_dnf_not_installed("xournalpp")
+      end
+
+      test "does not install alacritty" do
+        assert_dnf_not_installed("alacritty")
       end
     end
 

@@ -76,6 +76,10 @@ module Bootstrap
       assert_winget_installed("Xournal++.Xournal++")
     end
 
+    test "installs alacritty" do
+      assert_winget_installed("alacritty")
+    end
+
     private
 
     def assert_winget_installed(package_name)

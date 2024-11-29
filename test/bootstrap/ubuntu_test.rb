@@ -112,6 +112,10 @@ module Bootstrap
       test "installs xournalpp" do
         assert_apt_installed("xournalpp")
       end
+
+      test "installs alacritty" do
+        assert_snap_installed("alacritty")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -163,6 +167,10 @@ module Bootstrap
 
       test "does not install xournalpp" do
         assert_apt_not_installed("xournalpp")
+      end
+
+      test "does not install alacritty" do
+        assert_snap_not_installed("alacritty")
       end
     end
 
