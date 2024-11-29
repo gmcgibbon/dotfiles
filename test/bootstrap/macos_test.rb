@@ -120,6 +120,10 @@ module Bootstrap
       test "installs xournalpp" do
         assert_brew_cask_installed("xournal++")
       end
+
+      test "installs alacritty" do
+        assert_brew_cask_installed("alacritty")
+      end
     else
       test "does not install iterm2" do
         assert_brew_cask_not_installed("iterm2")
@@ -175,6 +179,10 @@ module Bootstrap
 
       test "does not install xournalpp" do
         assert_brew_cask_not_installed("xournal++")
+      end
+
+      test "does not install alacritty" do
+        assert_brew_cask_not_installed("alacritty")
       end
     end
 
