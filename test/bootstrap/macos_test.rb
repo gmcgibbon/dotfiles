@@ -60,6 +60,10 @@ module Bootstrap
       assert_brew_installed("fd")
     end
 
+    test "installs zellij" do
+      assert_brew_installed("zellij")
+    end
+
     if gui?
       test "installs iterm2" do
         assert_brew_cask_installed("iterm2")

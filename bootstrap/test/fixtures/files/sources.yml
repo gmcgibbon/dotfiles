@@ -8,7 +8,11 @@ third-party-pkg:
       name: test
       baseurl: testuri
       gpgkey: testgpgkey
-  
+
+other-third-party-pkg:
+  fedora:
+    dnf:
+      copr: some/repo
 
 script-pkg:
   macos:

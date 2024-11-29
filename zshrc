@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source ~/.bashrc
+
 source ~/.zsh/antigen/bin/antigen.zsh
 
 antigen use oh-my-zsh
@@ -11,6 +13,5 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 source ~/.zsh/themes/sparkle.zsh-theme
-source ~/.bashrc
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

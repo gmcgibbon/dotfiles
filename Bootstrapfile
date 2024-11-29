@@ -29,6 +29,7 @@ end
 
 unix do
   install "zsh"
+  install "zellij"
   install "rbenv"
   install "nvm"
   install "rcm"

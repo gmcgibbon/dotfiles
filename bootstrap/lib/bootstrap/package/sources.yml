@@ -162,3 +162,10 @@ xournalpp:
 alacritty:
   ubuntu:
     snap: true
+
+zellij:
+  ubuntu:
+    snap: true
+  fedora:
+    dnf:
+      copr: varlad/zellij
