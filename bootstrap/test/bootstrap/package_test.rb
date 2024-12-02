@@ -46,6 +46,10 @@ module Bootstrap
       Package.new("third-party-pkg", environment: Environment.new)
     end
 
+    def other_third_party_package
+      Package.new("other-third-party-pkg", environment: Environment.new)
+    end
+
     def script_package
       Package.new("script-pkg", environment: Environment.new)
     end
@@ -184,7 +188,7 @@ module Bootstrap
       end
     end
 
-    test "#install on fedora with third party source" do
+    test "#install on fedora with third party repo source" do
       repo_source = {
         "name" => "test", "baseurl" => "testuri", "gpgkey" => "testgpgkey",
       }
@@ -195,6 +199,24 @@ module Bootstrap
             assert_called_with(Dnf, :source, [repo_source]) do
               assert_called_with(Dnf, :install, %w(third-party-pkg)) do
                 third_party_package.install
+              end
+            end
+          end
+        end
+      end
+    end
+
+    test "#install on fedora with third party copr source" do
+      copr_source = {
+        "copr" => "some/repo",
+      }
+
+      with_ruby_platform("Linux") do
+        with_linux_version("Red Hat") do
+          assert_called(Package, :sources, returns: test_dependencies) do
+            assert_called_with(Dnf, :source, [copr_source]) do
+              assert_called_with(Dnf, :install, %w(other-third-party-pkg)) do
+                other_third_party_package.install
               end
             end
           end

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# zellij
+export ZELLIJ_AUTO_EXIT=true
+eval "$(zellij setup --generate-auto-start bash)"
+
 # aliases
 alias b="bundle"
 alias be="bundle exec"

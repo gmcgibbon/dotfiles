@@ -133,6 +133,24 @@ module Bootstrap
       end
 
       def source(repo)
+        if repo.key?("copr")
+          source_copr(repo)
+        else
+          source_repo(repo)
+        end
+      end
+
+      def sudo?
+        true
+      end
+
+      private
+
+      def source_copr(repo)
+        dnf("copr", "enable", "-y", repo["copr"])
+      end
+
+      def source_repo(repo)
         return if repo_exists?(repo)
 
         repo_file = repo["name"].downcase.gsub(" ", "-")
@@ -143,12 +161,6 @@ module Bootstrap
         )
         dnf("update")
       end
-
-      def sudo?
-        true
-      end
-
-      private
 
       def repo_exists?(repo)
         Dir["/etc/yum.repos.d/*"].find do |file|
