@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # zellij
-export ZELLIJ_AUTO_EXIT=true
-eval "$(zellij setup --generate-auto-start bash)"
+if [[ "$TERM_PROGRAM" != "vscode" ]] then
+  export ZELLIJ_AUTO_EXIT=true
+  eval "$(zellij setup --generate-auto-start bash)"
+fi
 
 # aliases
 alias b="bundle"

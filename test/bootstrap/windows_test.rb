@@ -80,6 +80,10 @@ module Bootstrap
       assert_winget_installed("alacritty")
     end
 
+    test "installs discord" do
+      assert_winget_installed("discord")
+    end
+
     private
 
     def assert_winget_installed(package_name)

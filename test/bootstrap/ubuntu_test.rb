@@ -116,6 +116,10 @@ module Bootstrap
       test "installs alacritty" do
         assert_snap_installed("alacritty")
       end
+
+      test "installs discord" do
+        assert_snap_installed("discord")
+      end
     else
       test "does not install flux" do
         assert_apt_not_installed("fluxgui")
@@ -171,6 +175,10 @@ module Bootstrap
 
       test "does not install alacritty" do
         assert_snap_not_installed("alacritty")
+      end
+
+      test "does not install discord" do
+        assert_snap_not_installed("discord")
       end
     end
 

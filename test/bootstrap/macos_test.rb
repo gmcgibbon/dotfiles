@@ -65,10 +65,6 @@ module Bootstrap
     end
 
     if gui?
-      test "installs iterm2" do
-        assert_brew_cask_installed("iterm2")
-      end
-
       test "installs firefox" do
         assert_brew_cask_installed("firefox")
       end
@@ -128,11 +124,11 @@ module Bootstrap
       test "installs alacritty" do
         assert_brew_cask_installed("alacritty")
       end
-    else
-      test "does not install iterm2" do
-        assert_brew_cask_not_installed("iterm2")
-      end
 
+      test "installs discord" do
+        assert_brew_cask_installed("discord")
+      end
+    else
       test "does not install flux" do
         assert_brew_cask_not_installed("flux")
       end
@@ -187,6 +183,10 @@ module Bootstrap
 
       test "does not install alacritty" do
         assert_brew_cask_not_installed("alacritty")
+      end
+
+      test "does not install discord" do
+        assert_brew_cask_not_installed("discord")
       end
     end
 
