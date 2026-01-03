@@ -12,7 +12,6 @@ gui do
   install "gimp"
   install "qemu"
   install "localsend"
-  install "pinta"
   install "xournalpp"
   install "alacritty"
 

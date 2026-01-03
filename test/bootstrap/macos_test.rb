@@ -109,10 +109,6 @@ module Bootstrap
         assert_brew_cask_installed("localsend")
       end
 
-      test "installs pinta" do
-        assert_brew_cask_installed("pinta")
-      end
-
       test "installs xournalpp" do
         assert_brew_cask_installed("xournal++")
       end
@@ -163,10 +159,6 @@ module Bootstrap
 
       test "does not install localsend" do
         assert_brew_cask_not_installed("localsend")
-      end
-
-      test "does not install pinta" do
-        assert_brew_cask_not_installed("pinta")
       end
 
       test "does not install xournalpp" do

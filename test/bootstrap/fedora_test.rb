@@ -101,10 +101,6 @@ module Bootstrap
         assert_flatpak_installed("localsend")
       end
 
-      test "installs pinta" do
-        assert_dnf_installed("pinta")
-      end
-
       test "installs xournalpp" do
         assert_dnf_installed("xournalpp")
       end
@@ -155,10 +151,6 @@ module Bootstrap
 
       test "does not install localsend" do
         assert_flatpak_not_installed("localsend")
-      end
-
-      test "does not install pinta" do
-        assert_dnf_not_installed("pinta")
       end
 
       test "does not install xournalpp" do

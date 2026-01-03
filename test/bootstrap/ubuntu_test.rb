@@ -101,10 +101,6 @@ module Bootstrap
         assert_snap_installed("localsend")
       end
 
-      test "installs pinta" do
-        assert_apt_installed("pinta")
-      end
-
       test "installs xournalpp" do
         assert_apt_installed("xournalpp")
       end
@@ -155,10 +151,6 @@ module Bootstrap
 
       test "does not install localsend" do
         assert_snap_not_installed("localsend")
-      end
-
-      test "does not install pinta" do
-        assert_apt_not_installed("pinta")
       end
 
       test "does not install xournalpp" do
