@@ -3,16 +3,18 @@
 $LOAD_PATH << File.expand_path("../lib", __dir__)
 require("bootstrap")
 require("minitest/autorun")
+require("minitest/mock")
 
 module Bootstrap
   module StubHelpers
-    def assert_called(object, method_name, times: 1, returns: nil, &block)
+    def assert_called(object, method_name, times: 1, returns: nil, &)
       times_called = 0
       counter = proc do
         times_called += 1
         returns
       end
-      object.stub(method_name, counter, &block).tap do
+
+      object.stub(method_name, counter, &).tap do
         assert_equal(
           times,
           times_called,
@@ -21,25 +23,25 @@ module Bootstrap
       end
     end
 
-    def assert_not_called(object, method_name, &block)
-      assert_called(object, method_name, times: 0, &block)
+    def assert_not_called(object, method_name, &)
+      assert_called(object, method_name, times: 0, &)
     end
 
-    def assert_called_with(object, method_name, arguments, returns: nil, &block)
+    def assert_called_with(object, method_name, arguments, returns: nil, &)
       mock = Minitest::Mock.new
       if arguments.all? { |argument| argument.is_a?(Array) }
         arguments.each { |argument| mock.expect(:call, returns, argument) }
       else
         mock.expect(:call, returns, arguments)
       end
-      object.stub(method_name, mock, &block)
+      object.stub(method_name, mock, &)
 
       mock.verify
     end
 
-    def stub(object, method_name, returns: nil, &block)
+    def stub(object, method_name, returns: nil, &)
       returner = proc { returns }
-      object.stub(method_name, returner, &block)
+      object.stub(method_name, returner, &)
     end
 
     def stub_const(const_symbol, value, on: Object)
@@ -54,26 +56,26 @@ module Bootstrap
   end
 
   module DeclarativeHelpers
-    def test(description, &block)
-      define_method("test_#{description.gsub(/\s+/, "_")}", &block)
+    def test(description, &)
+      define_method("test_#{description.gsub(/\s+/, "_")}", &)
     end
 
-    def setup(&block)
-      define_method("setup", &block)
+    def setup(&)
+      define_method("setup", &)
     end
 
-    def teardown(&block)
-      define_method("setup", &block)
+    def teardown(&)
+      define_method("setup", &)
     end
   end
 
   module TestHelpers
-    def with_ruby_platform(platform, &block)
-      stub_const(:RUBY_PLATFORM, platform, &block)
+    def with_ruby_platform(platform, &)
+      stub_const(:RUBY_PLATFORM, platform, &)
     end
 
-    def with_linux_version(version, &block)
-      stub(Environment, :version, returns: version, &block)
+    def with_linux_version(version, &)
+      stub(Environment, :version, returns: version, &)
     end
 
     def with_env(**env)
@@ -85,7 +87,6 @@ module Bootstrap
     end
 
     def file_fixture(path)
-      require("pathname")
       Pathname.new(__dir__).join("fixtures", "files", path)
     end
   end

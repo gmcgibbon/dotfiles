@@ -21,6 +21,7 @@ module Bootstrap
         File.expand_path("../../lib/bootstrap/package/sources.yml", __dir__),
         aliases: true,
       )
+
       assert_equal sources, Package.sources
     end
 

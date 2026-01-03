@@ -14,6 +14,7 @@ module Bootstrap
             assert_equal "some_location", Source.new(package, apt: "some_location").location
           end
         end
+
         assert_not Source.new(package).location
       end
 
@@ -27,7 +28,7 @@ module Bootstrap
         assert_equal "alias_pkg", Source.new(package, name: "alias_pkg").name
       end
 
-      test "#package_manager" do
+      test "#package_manager ubuntu" do
         with_ruby_platform("linux") do
           with_linux_version("Ubuntu") do
             assert_equal Snap, Source.new(package, snap: true).package_manager
@@ -35,7 +36,9 @@ module Bootstrap
             assert_equal Apt, Source.new(package).package_manager
           end
         end
+      end
 
+      test "#package_manager fedora" do
         with_ruby_platform("linux") do
           with_linux_version("Red Hat") do
             assert_equal Flatpak, Source.new(package, flatpak: true).package_manager
@@ -43,12 +46,16 @@ module Bootstrap
             assert_equal Dnf, Source.new(package).package_manager
           end
         end
+      end
 
+      test "#package_manager macos" do
         with_ruby_platform("darwin") do
           assert_equal Brew, Source.new(package, brew: true).package_manager
           assert_equal Brew, Source.new(package).package_manager
         end
+      end
 
+      test "#package_manager windows" do
         with_ruby_platform("mingw") do
           assert_equal Winget, Source.new(package).package_manager
         end
