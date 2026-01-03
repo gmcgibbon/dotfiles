@@ -32,10 +32,6 @@ module Bootstrap
       assert_winget_installed("Microsoft.VisualStudioCode")
     end
 
-    test "installs skype" do
-      assert_winget_installed("Skype")
-    end
-
     test "installs zoom" do
       assert_winget_installed("Zoom.Zoom")
     end unless ENV["CI"] # NOTE: Doesn't install on an elevated prompt.

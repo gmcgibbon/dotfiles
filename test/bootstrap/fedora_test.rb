@@ -77,10 +77,6 @@ module Bootstrap
         assert_dnf_installed("code")
       end
 
-      test "installs skype" do
-        assert_flatpak_installed("skype")
-      end
-
       test "installs zoom" do
         assert_flatpak_installed("zoom")
       end
@@ -135,10 +131,6 @@ module Bootstrap
 
       test "does not install visual studio code" do
         assert_dnf_not_installed("code")
-      end
-
-      test "does not install skype" do
-        assert_flatpak_not_installed("skype")
       end
 
       test "does not install zoom" do

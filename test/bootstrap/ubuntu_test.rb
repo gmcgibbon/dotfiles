@@ -77,10 +77,6 @@ module Bootstrap
         assert_snap_installed("code")
       end
 
-      test "installs skype" do
-        assert_snap_installed("skype")
-      end
-
       test "installs zoom" do
         assert_snap_installed("zoom-client")
       end
@@ -135,10 +131,6 @@ module Bootstrap
 
       test "does not install visual studio code" do
         assert_snap_not_installed("code")
-      end
-
-      test "does not install skype" do
-        assert_snap_not_installed("skype")
       end
 
       test "does not install zoom" do

@@ -3,7 +3,6 @@
 gui do
   install "firefox"
   install "visual-studio-code"
-  install "skype"
   install "zoom"
   install "vlc"
   install "steam"

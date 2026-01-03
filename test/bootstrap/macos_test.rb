@@ -85,10 +85,6 @@ module Bootstrap
         assert_brew_cask_installed("visual-studio-code")
       end
 
-      test "installs skype" do
-        assert_brew_cask_installed("skype")
-      end
-
       test "installs zoom" do
         assert_brew_cask_installed("zoom")
       end
@@ -143,10 +139,6 @@ module Bootstrap
 
       test "does not install visual studio code" do
         assert_brew_cask_not_installed("visual-studio-code")
-      end
-
-      test "does not install skype" do
-        assert_brew_cask_not_installed("skype")
       end
 
       test "does not install zoom" do
