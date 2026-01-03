@@ -37,7 +37,7 @@ module Bootstrap
     end
 
     test "installs heroku" do
-      assert_apt_installed("heroku")
+      assert_installed_at("/usr/local/bin/heroku")
     end
 
     test "installs ripgrep" do
