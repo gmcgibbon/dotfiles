@@ -1,9 +1,9 @@
 @echo off
-                           
+
 curl -Lo winget.msixbundle https://github.com/microsoft/winget-cli/releases/download/v1.6.3482/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 winget.msixbundle
 del winget.msixbundle
-winget install -e --id RubyInstallerTeam.Ruby.3.0 --accept-source-agreements --accept-package-agreements
+winget install -e --id RubyInstallerTeam.Ruby.3.4 --accept-source-agreements --accept-package-agreements
 SET PATH=C:\Ruby30-x64\bin;%PATH%
 
 if defined CI (
