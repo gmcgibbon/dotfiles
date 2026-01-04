@@ -168,3 +168,5 @@ discord:
     snap: true
   fedora:
     flatpak: true
+  windows:
+    name: Discord.Discord

@@ -5,7 +5,7 @@ require_relative("test_helper")
 module Bootstrap
   class WindowsTest < TestCase
     test "installs discord" do
-      assert_winget_installed("Discord")
+      assert_winget_installed("Discord.Discord")
     end
 
     test "installs vim" do
@@ -70,10 +70,6 @@ module Bootstrap
 
     test "installs alacritty" do
       assert_winget_installed("alacritty")
-    end
-
-    test "installs discord" do
-      assert_winget_installed("discord")
     end
 
     private
