@@ -61,8 +61,8 @@ module Bootstrap
     end
 
     if gui?
-      test "installs firefox" do
-        assert_dnf_installed("firefox")
+      test "installs brave" do
+        assert_dnf_installed("brave")
       end
 
       test "installs vlc" do
@@ -113,6 +113,10 @@ module Bootstrap
         assert_flatpak_installed("discord")
       end
     else
+      test "does not install brave" do
+        assert_dnf_not_installed("brave")
+      end
+
       test "does not install flux" do
         assert_dnf_not_installed("fluxgui")
       end

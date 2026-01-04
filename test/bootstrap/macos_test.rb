@@ -65,8 +65,8 @@ module Bootstrap
     end
 
     if gui?
-      test "installs firefox" do
-        assert_brew_cask_installed("firefox")
+      test "installs brave" do
+        assert_brew_cask_installed("brave-browser")
       end
 
       test "installs flux" do
@@ -121,6 +121,10 @@ module Bootstrap
         assert_brew_cask_installed("discord")
       end
     else
+      test "does not install brave" do
+        assert_brew_cask_not_installed("brave-browser")
+      end
+
       test "does not install flux" do
         assert_brew_cask_not_installed("flux")
       end
