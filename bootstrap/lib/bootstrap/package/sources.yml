@@ -59,13 +59,6 @@ steam:
   ubuntu:
     apt: multiverse
 
-skype:
-  ubuntu:
-    snap: true
-  fedora:
-    flatpak: true
-    name: com.skype.Client
-
 spotify:
   ubuntu:
     snap: true
@@ -117,7 +110,7 @@ flux:
 
 gimp:
   windows:
-    name: GIMP.GIMP
+    name: GIMP.GIMP.3
 
 qemu:
   ubuntu:
@@ -175,3 +168,5 @@ discord:
     snap: true
   fedora:
     flatpak: true
+  windows:
+    name: Discord.Discord

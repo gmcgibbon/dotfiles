@@ -5,7 +5,7 @@ require_relative("test_helper")
 module Bootstrap
   class WindowsTest < TestCase
     test "installs discord" do
-      assert_winget_installed("Discord")
+      assert_winget_installed("Discord.Discord")
     end
 
     test "installs vim" do
@@ -32,10 +32,6 @@ module Bootstrap
       assert_winget_installed("Microsoft.VisualStudioCode")
     end
 
-    test "installs skype" do
-      assert_winget_installed("Skype")
-    end
-
     test "installs zoom" do
       assert_winget_installed("Zoom.Zoom")
     end unless ENV["CI"] # NOTE: Doesn't install on an elevated prompt.
@@ -49,7 +45,7 @@ module Bootstrap
     end
 
     test "installs gimp" do
-      assert_winget_installed("GIMP.GIMP")
+      assert_winget_installed("GIMP.GIMP.3")
     end
 
     test "installs qemu" do
@@ -58,10 +54,6 @@ module Bootstrap
 
     test "installs localsend" do
       assert_winget_installed("localsend")
-    end
-
-    test "installs pinta" do
-      assert_winget_installed("pinta")
     end
 
     test "installs fastfetch" do
@@ -78,10 +70,6 @@ module Bootstrap
 
     test "installs alacritty" do
       assert_winget_installed("alacritty")
-    end
-
-    test "installs discord" do
-      assert_winget_installed("discord")
     end
 
     private

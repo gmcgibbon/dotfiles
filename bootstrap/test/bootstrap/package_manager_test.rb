@@ -54,12 +54,12 @@ module Bootstrap
 
     private
 
-    def with_casks(cask_packages, &block)
-      Brew.stub(:cask_packages, cask_packages, &block)
+    def with_casks(cask_packages, &)
+      Brew.stub(:cask_packages, cask_packages, &)
     end
 
-    def with_no_casks(&block)
-      with_casks([], &block)
+    def with_no_casks(&)
+      with_casks([], &)
     end
   end
 

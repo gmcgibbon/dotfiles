@@ -3,7 +3,6 @@
 gui do
   install "firefox"
   install "visual-studio-code"
-  install "skype"
   install "zoom"
   install "vlc"
   install "steam"
@@ -13,7 +12,6 @@ gui do
   install "gimp"
   install "qemu"
   install "localsend"
-  install "pinta"
   install "xournalpp"
   install "alacritty"
 

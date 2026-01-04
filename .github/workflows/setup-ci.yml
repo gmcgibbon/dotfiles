@@ -36,8 +36,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout
-      - name: Install Winget
-        if: ${{ matrix.platform.name == 'windows' }}
-        uses: Cyberboss/install-winget@v1
       - name: ⚙️ Setup
         run: ${{ matrix.platform.script }}

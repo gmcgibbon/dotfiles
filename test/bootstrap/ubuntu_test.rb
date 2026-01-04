@@ -37,7 +37,7 @@ module Bootstrap
     end
 
     test "installs heroku" do
-      assert_apt_installed("heroku")
+      assert_installed_at("/usr/local/bin/heroku")
     end
 
     test "installs ripgrep" do
@@ -77,10 +77,6 @@ module Bootstrap
         assert_snap_installed("code")
       end
 
-      test "installs skype" do
-        assert_snap_installed("skype")
-      end
-
       test "installs zoom" do
         assert_snap_installed("zoom-client")
       end
@@ -103,10 +99,6 @@ module Bootstrap
 
       test "installs localsend" do
         assert_snap_installed("localsend")
-      end
-
-      test "installs pinta" do
-        assert_apt_installed("pinta")
       end
 
       test "installs xournalpp" do
@@ -137,10 +129,6 @@ module Bootstrap
         assert_snap_not_installed("code")
       end
 
-      test "does not install skype" do
-        assert_snap_not_installed("skype")
-      end
-
       test "does not install zoom" do
         assert_snap_not_installed("zoom-client")
       end
@@ -163,10 +151,6 @@ module Bootstrap
 
       test "does not install localsend" do
         assert_snap_not_installed("localsend")
-      end
-
-      test "does not install pinta" do
-        assert_apt_not_installed("pinta")
       end
 
       test "does not install xournalpp" do

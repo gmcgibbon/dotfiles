@@ -38,8 +38,8 @@ module Bootstrap
         system(*args)
       end
 
-      def command(*args)
-        run(command_name, *args)
+      def command(*)
+        run(command_name, *)
       end
     end
   end
