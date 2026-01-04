@@ -153,12 +153,11 @@ module Bootstrap
       def source_repo(repo)
         return if repo_exists?(repo)
 
-        repo_file = repo["name"].downcase.gsub(" ", "-")
+        repo_name = repo["name"].downcase.gsub(" ", "-")
+        repo_file = "/etc/yum.repos.d/#{repo_name}.repo"
+        repo_content = "[#{repo_name}]\n#{serialize(repo)}".inspect
 
-        File.write(
-          "#{repo_file}.repo",
-          "[#{repo_file}]\n#{serialize(repo)}",
-        )
+        system("echo -e #{repo_content} | sudo tee #{repo_file} > /dev/null")
         dnf("update")
       end
 
