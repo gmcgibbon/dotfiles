@@ -45,7 +45,7 @@ module Bootstrap
     end
 
     test "installs gimp" do
-      assert_winget_installed("GIMP.GIMP")
+      assert_winget_installed("GIMP.GIMP.3")
     end
 
     test "installs qemu" do

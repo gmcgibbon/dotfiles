@@ -110,7 +110,7 @@ flux:
 
 gimp:
   windows:
-    name: GIMP.GIMP
+    name: GIMP.GIMP.3
 
 qemu:
   ubuntu:
