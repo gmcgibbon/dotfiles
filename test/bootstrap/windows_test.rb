@@ -12,8 +12,8 @@ module Bootstrap
       assert_winget_installed("vim.vim")
     end
 
-    test "installs firefox" do
-      assert_winget_installed("Firefox")
+    test "installs brave" do
+      assert_winget_installed("brave")
     end
 
     test "installs flux" do
