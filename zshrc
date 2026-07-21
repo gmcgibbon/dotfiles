@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source ~/.bashrc
+source ~/.shellrc
 
 source ~/.zsh/antigen/bin/antigen.zsh
 
